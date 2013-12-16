@@ -1,0 +1,15 @@
+[submodule "externals/MonoGame"]
+	path = externals/MonoGame
+	url = git@github.com:dmanning23/MonoGame.git
+[submodule "externals/MenuBuddy"]
+	path = externals/MenuBuddy
+	url = git@github.com:dmanning23/MenuBuddy.git
+[submodule "externals/FontBuddy"]
+	path = externals/FontBuddy
+	url = git@github.com:dmanning23/FontBuddy.git
+[submodule "externals/GameTimer"]
+	path = externals/GameTimer
+	url = git@github.com:dmanning23/GameTimer.git
+[submodule "externals/HadoukInput"]
+	path = externals/HadoukInput
+	url = git@github.com:dmanning23/HadoukInput.git
