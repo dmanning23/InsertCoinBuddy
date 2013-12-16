@@ -81,6 +81,7 @@ namespace InsertCoinBuddy
 		{
 			TotalCoins = 0;
 			CoinKey = Keys.Q;
+			GameInPlay = false;
 			_prevKeys = new KeyboardState();
 		}
 
@@ -119,9 +120,9 @@ namespace InsertCoinBuddy
 		public bool StartGame()
 		{
 			//Are we able to start a game?
-			if ((1 > NumCredits) || !FreePlay)
+			if (GameInPlay || (1 > NumCredits) || !FreePlay)
 			{
-				//No credits and not in free play mode! 
+				//Game is already in play, or no credits and not in free play mode! 
 				return false;
 			}
 

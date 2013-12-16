@@ -15,7 +15,7 @@ namespace InsertCoinBuddy
 	/// At the bottom of the screen, displays the number of credits
 	/// Credits: [NumCredits] [NumCoins]/[CoinsPerCredit]
 	/// </summary>
-	internal class InsertCoinScreen : GameScreen
+	public class InsertCoinScreen : GameScreen
 	{
 		#region Fields
 
