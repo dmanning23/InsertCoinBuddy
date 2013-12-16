@@ -1,7 +1,7 @@
+using FontBuddyLib;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using FontBuddyLib;
 using ResolutionBuddy;
 using System.Diagnostics;
 
@@ -114,7 +114,7 @@ namespace InsertCoinBuddy
 			if (!_creditsManager.GameInPlay)
 			{
 				//Are there any credits in the system?
-				if (1 <= _creditsManager.NumCredits)
+				if ((1 <= _creditsManager.NumCredits) || _creditsManager.FreePlay)
 				{
 					//Draw in big pulsating letters
 					InsertCoinFont.PulsateSpeed = 6.0f; //pulsate faster
@@ -169,7 +169,7 @@ namespace InsertCoinBuddy
 			else
 			{
 				//If the game is in play, only display credits if there are any coins in the system
-				return (_creditsManager.TotalCoins >= 1);
+				return (_creditsManager.FreePlay || (_creditsManager.TotalCoins >= 1));
 			}
 		}
 
@@ -196,6 +196,12 @@ namespace InsertCoinBuddy
 		/// <returns>The credits text.</returns>
 		public string NumCreditsText()
 		{
+			//if it is free play mode, just say so
+			if (_creditsManager.FreePlay)
+			{
+				return "Free Play";
+			}
+
 			if (0 == _creditsManager.NumCredits)
 			{
 				//Don't display 0 for number of credits, it will be confusing
@@ -205,10 +211,19 @@ namespace InsertCoinBuddy
 			}
 			else
 			{
-				return string.Format("Credits: {0} {1}/{2}",
-					_creditsManager.NumCredits,
-					_creditsManager.NumCoins,
-					_creditsManager.CoinsPerCredit);
+				//There are credits in the system!
+				if (0 == _creditsManager.NumCoins)
+				{
+					//Don't display 0/x for num coins, it looks terrible
+					return string.Format("Credits: {0}", _creditsManager.NumCredits);
+				}
+				else
+				{
+					return string.Format("Credits: {0} {1}/{2}",
+						_creditsManager.NumCredits,
+						_creditsManager.NumCoins,
+						_creditsManager.CoinsPerCredit);
+				}
 			}
 		}
 

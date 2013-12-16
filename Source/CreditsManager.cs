@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework.Input;
 
 namespace InsertCoinBuddy
@@ -12,6 +11,11 @@ namespace InsertCoinBuddy
 		/// </summary>
 		private KeyboardState _prevKeys;
 
+		/// <summary>
+		/// the coins per credit.
+		/// </summary>
+		private int _coinsPerCredit = 1;
+
 		#endregion //Fields
 
 		#region Properties
@@ -20,7 +24,21 @@ namespace InsertCoinBuddy
 		/// Gets or sets the coins per credit.
 		/// </summary>
 		/// <value>The coins per credit.</value>
-		public int CoinsPerCredit { get; set; }
+		public int CoinsPerCredit
+		{
+			get
+			{
+				return _coinsPerCredit;
+			}
+			set
+			{
+				//Guard against divide by zero
+				if (value > 0)
+				{
+					_coinsPerCredit = value;
+				}
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="InsertCoinBuddy.CreditsWatcher"/> is on free play.
@@ -120,7 +138,7 @@ namespace InsertCoinBuddy
 		public bool StartGame()
 		{
 			//Are we able to start a game?
-			if (GameInPlay || (1 > NumCredits) || !FreePlay)
+			if (GameInPlay || (!FreePlay && (1 > NumCredits)))
 			{
 				//Game is already in play, or no credits and not in free play mode! 
 				return false;
