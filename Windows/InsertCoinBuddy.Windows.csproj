@@ -36,12 +36,27 @@
     <Compile Include="..\Source\CreditsManager.cs">
       <Link>CreditsManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\InsertCoinScreen.cs">
+      <Link>InsertCoinScreen.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\externals\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsGL.csproj">
       <Project>{7DE47032-A904-4C29-BD22-2D235E8D91BA}</Project>
       <Name>MonoGame.Framework.WindowsGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\externals\MenuBuddy\Windows\MenuBuddy.Windows.csproj">
+      <Project>{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}</Project>
+      <Name>MenuBuddy.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\externals\FontBuddy\Windows\FontBuddy.Windows.csproj">
+      <Project>{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}</Project>
+      <Name>FontBuddy.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\externals\ResolutionBuddy\Windows\ResolutionBuddy.Windows.csproj">
+      <Project>{28342DF0-0089-4A2A-B3D4-6DCD65D6D8E4}</Project>
+      <Name>ResolutionBuddy.Windows</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -3,14 +3,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace InsertCoinBuddy
 {
-	public class CreditsWatcher
+	public class CreditsManager
 	{
 		#region Fields
-
-		/// <summary>
-		/// The number of coins that have not been used.
-		/// </summary>
-		private int _coins = 0;
 
 		/// <summary>
 		/// The _prev keys.  Used to check for key down
@@ -34,6 +29,11 @@ namespace InsertCoinBuddy
 		public bool FreePlay { get; set; }
 
 		/// <summary>
+		/// The number of coins that are currently in the system, available for use.
+		/// </summary>
+		public int TotalCoins { get; private set; }
+
+		/// <summary>
 		/// Gets or sets the number coins not used by a credit.
 		/// So if it is 2 coins per credit and there are 5 coins loaded, this will return 1.
 		/// </summary>
@@ -42,7 +42,7 @@ namespace InsertCoinBuddy
 		{ 
 			get
 			{
-				return _coins % CoinsPerCredit;
+				return TotalCoins % CoinsPerCredit;
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace InsertCoinBuddy
 		{ 
 			get
 			{
-				return _coins / CoinsPerCredit;
+				return TotalCoins / CoinsPerCredit;
 			}
 		}
 
@@ -66,13 +66,20 @@ namespace InsertCoinBuddy
 		/// <value>The coin key.</value>
 		public Keys CoinKey { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value indicating whether a game is in play.
+		/// </summary>
+		/// <value><c>true</c> if game in play; otherwise, <c>false</c>.</value>
+		public bool GameInPlay { get; set; }
+
 		#endregion //Properties
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsWatcher()
+		public CreditsManager()
 		{
+			TotalCoins = 0;
 			CoinKey = Keys.Q;
 			_prevKeys = new KeyboardState();
 		}
@@ -101,7 +108,7 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public void AddCoin()
 		{
-			_coins++;
+			TotalCoins++;
 		}
 
 		/// <summary>
@@ -119,9 +126,9 @@ namespace InsertCoinBuddy
 			}
 
 			//remove a credit from the number of coins
-			if (_coins >= CoinsPerCredit)
+			if (TotalCoins >= CoinsPerCredit)
 			{
-				_coins -= CoinsPerCredit;
+				TotalCoins -= CoinsPerCredit;
 			}
 
 			//Able to start a game!
@@ -133,7 +140,16 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public void CoinReturn()
 		{
-			_coins = 0;
+			TotalCoins = 0;
+		}
+
+		/// <summary>
+		/// Get the number of coins the player needs to enter before they will complete a credit
+		/// </summary>
+		/// <returns>The coins needed for next credit.</returns>
+		public int NumCoinsNeededForNextCredit()
+		{
+			return CoinsPerCredit - NumCoins;
 		}
 	}
 }
