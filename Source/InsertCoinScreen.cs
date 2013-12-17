@@ -34,6 +34,11 @@ namespace InsertCoinBuddy
 		/// </summary>
 		private CreditsManager _creditsManager;
 
+		/// <summary>
+		/// how to justify all the text for this screen
+		/// </summary>
+		public Justify TextJustification { get; set; }
+
 		#endregion //Fields
 
 		#region Properties
@@ -71,11 +76,13 @@ namespace InsertCoinBuddy
 			InsertCoinTextLocation = Vector2.Zero;
 			NumCreditsTextLocation = Vector2.Zero;
 			InsertCoinFont = new PulsateBuddy();
+			InsertCoinFont.PulsateSize = 0.25f;
 			NumCreditsFont = new FontBuddy();
 			_insertCoinFontName = strInsertCoinFont;
 			_numCreditsFontName = strNumCreditsFont;
 			_creditsManager = manager;
 			Debug.Assert(null != _creditsManager);
+			TextJustification = Justify.Center;
 		}
 
 		#endregion //Initialization
@@ -120,7 +127,7 @@ namespace InsertCoinBuddy
 					InsertCoinFont.PulsateSpeed = 6.0f; //pulsate faster
 					InsertCoinFont.Write("Press Start!",
 						InsertCoinTextLocation,
-						Justify.Center, 
+						TextJustification, 
 						1.2f, //write bigger
 						Color.White,
 						ScreenManager.SpriteBatch,
@@ -129,10 +136,10 @@ namespace InsertCoinBuddy
 				else
 				{
 					//draw in slowly pulsating white letters
-					InsertCoinFont.PulsateSpeed = 2.0f; //pulsate sloooowly
+					InsertCoinFont.PulsateSpeed = 3.0f; //pulsate sloooowly
 					InsertCoinFont.Write(InsertCoinText(),
 						InsertCoinTextLocation,
-						Justify.Center, 
+						TextJustification, 
 						1.0f, //write normal
 						Color.White,
 						ScreenManager.SpriteBatch,
@@ -145,7 +152,7 @@ namespace InsertCoinBuddy
 			{
 				NumCreditsFont.Write(NumCreditsText(),
 					NumCreditsTextLocation,
-					Justify.Center, 
+					TextJustification, 
 					1.0f, //write normal
 					Color.White,
 					ScreenManager.SpriteBatch,
