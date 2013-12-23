@@ -121,17 +121,13 @@ namespace InsertCoinBuddy
 			if (!_creditsManager.GameInPlay)
 			{
 				//Are there any credits in the system?
-				if ((1 <= _creditsManager.NumCredits) || _creditsManager.FreePlay)
+				if ((2 <= _creditsManager.NumCredits) || _creditsManager.FreePlay)
 				{
-					//Draw in big pulsating letters
-					InsertCoinFont.PulsateSpeed = 6.0f; //pulsate faster
-					InsertCoinFont.Write("Press Start!",
-						InsertCoinTextLocation,
-						TextJustification, 
-						1.2f, //write bigger
-						Color.White,
-						ScreenManager.SpriteBatch,
-						gameTime.TotalGameTime.TotalSeconds);
+					DrawPressStart("Press 1P or 2P start!", gameTime);
+				}
+				else if (1 <= _creditsManager.NumCredits)
+				{
+					DrawPressStart("Press 1P Start!", gameTime);
 				}
 				else
 				{
@@ -153,7 +149,7 @@ namespace InsertCoinBuddy
 				NumCreditsFont.Write(NumCreditsText(),
 					NumCreditsTextLocation,
 					TextJustification, 
-					1.0f, //write normal
+					0.6f, //write normal
 					Color.White,
 					ScreenManager.SpriteBatch,
 					gameTime.TotalGameTime.TotalSeconds);
@@ -232,6 +228,23 @@ namespace InsertCoinBuddy
 						_creditsManager.CoinsPerCredit);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Draw the "press start" text
+		/// </summary>
+		/// <param name="strText">the text to write</param>
+		public void DrawPressStart(string strText, GameTime gameTime)
+		{
+			//Draw in big pulsating letters
+			InsertCoinFont.PulsateSpeed = 6.0f; //pulsate faster
+			InsertCoinFont.Write(strText,
+				InsertCoinTextLocation,
+				TextJustification,
+				1.2f, //write bigger
+				Color.White,
+				ScreenManager.SpriteBatch,
+				gameTime.TotalGameTime.TotalSeconds);
 		}
 
 		#endregion
