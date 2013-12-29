@@ -98,7 +98,7 @@ namespace InsertCoinBuddy
 		public CreditsManager()
 		{
 			TotalCoins = 0;
-			CoinKey = Keys.Q;
+			CoinKey = Keys.L;
 			GameInPlay = false;
 			_prevKeys = new KeyboardState();
 		}
