@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace InsertCoinBuddy
 {
@@ -15,6 +16,12 @@ namespace InsertCoinBuddy
 		/// the coins per credit.
 		/// </summary>
 		private int _coinsPerCredit = 1;
+
+		/// <summary>
+		/// Event that gets called when a coin is dropped
+		/// Used to exit menu screens
+		/// </summary>
+		public event EventHandler<EventArgs> OnCoinAdded;
 
 		#endregion //Fields
 
@@ -116,6 +123,10 @@ namespace InsertCoinBuddy
 			{
 				//Detected a coin drop!
 				AddCoin();
+				if (OnCoinAdded != null)
+				{
+					OnCoinAdded(this, new EventArgs());
+				}
 			}
 
 			//update the prev state
