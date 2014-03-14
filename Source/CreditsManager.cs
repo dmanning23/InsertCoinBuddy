@@ -4,7 +4,7 @@ using System;
 
 namespace InsertCoinBuddy
 {
-	public class CreditsManager : GameComponent
+	public class CreditsManager : GameComponent, ICreditsManager
 	{
 		#region Fields
 
@@ -100,6 +100,8 @@ namespace InsertCoinBuddy
 
 		#endregion //Properties
 
+		#region Methods
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
@@ -109,6 +111,8 @@ namespace InsertCoinBuddy
 			CoinKey = Keys.L;
 			GameInPlay = false;
 			_prevKeys = new KeyboardState();
+
+			Game.Services.AddService(typeof(ICreditsManager), this);
 		}
 
 		/// <summary>
@@ -184,6 +188,8 @@ namespace InsertCoinBuddy
 		{
 			return CoinsPerCredit - NumCoins;
 		}
+
+		#endregion //Methods
 	}
 }
 
