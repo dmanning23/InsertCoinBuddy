@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace InsertCoinBuddy
 {
-	public class CreditsManager
+	public class CreditsManager : GameComponent
 	{
 		#region Fields
 
@@ -102,7 +103,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager()
+		public CreditsManager(Game game) : base(game)
 		{
 			TotalCoins = 0;
 			CoinKey = Keys.L;
@@ -113,13 +114,13 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Called each frame, checks the keyboard input for a coin drop
 		/// </summary>
-		public void Update()
+		public override void Update(GameTime gameTime)
 		{
 			//update the keyboard state
 			KeyboardState curKeys = Keyboard.GetState();
 
 			//Check for a coin drop
-			if (_prevKeys.IsKeyUp(CoinKey) && curKeys.IsKeyDown(CoinKey))
+			if (curKeys.IsKeyDown(CoinKey) && _prevKeys.IsKeyUp(CoinKey))
 			{
 				//Detected a coin drop!
 				AddCoin();
@@ -131,6 +132,8 @@ namespace InsertCoinBuddy
 
 			//update the prev state
 			_prevKeys = curKeys;
+
+			base.Update(gameTime);
 		}
 
 		/// <summary>
