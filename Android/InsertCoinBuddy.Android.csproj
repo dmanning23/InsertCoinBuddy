@@ -51,6 +51,9 @@
     <Compile Include="..\Source\InsertCoinScreen.cs">
       <Link>InsertCoinScreen.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ICreditsManager.cs">
+      <Link>ICreditsManager.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -64,13 +67,13 @@
       <Project>{BA9476CF-99BA-4D03-92F2-73D2C5E58883}</Project>
       <Name>MonoGame.Framework.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
-      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
-      <Name>FontBuddyLib.Android</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MenuBuddy\Android\MenuBuddy.Android.csproj">
       <Project>{E0E3A3B6-B8EA-4CF5-AFEC-8A193E170952}</Project>
       <Name>MenuBuddy.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
+      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
+      <Name>FontBuddyLib.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
       <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
