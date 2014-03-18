@@ -52,7 +52,13 @@ namespace InsertCoinBuddy
 		/// Gets or sets a value indicating whether this <see cref="InsertCoinBuddy.CreditsWatcher"/> is on free play.
 		/// </summary>
 		/// <value><c>true</c> if free play; otherwise, <c>false</c>.</value>
-		public bool FreePlay { get; set; }
+		public bool FreePlay 
+		{
+			get
+			{
+				return (0 == CoinsPerCredit);
+			}
+		}
 
 		/// <summary>
 		/// The number of coins that are currently in the system, available for use.
