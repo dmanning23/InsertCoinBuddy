@@ -169,13 +169,42 @@ namespace InsertCoinBuddy
 			}
 
 			//remove a credit from the number of coins
+			SubtractCredit();
+
+			//Able to start a game!
+			return true;
+		}
+
+		/// <summary>
+		/// Someone tried to join a game.
+		/// Check if they can join and update the coin state.
+		/// </summary>
+		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
+		public bool JoinGame()
+		{
+			//Are we able to join a game?
+			if (!GameInPlay || (!FreePlay && (1 > NumCredits)))
+			{
+				//Game is not in play, or no credits and not in free play mode! 
+				return false;
+			}
+
+			//remove a credit from the number of coins
+			SubtractCredit();
+
+			//Able to join a game!
+			return true;
+		}
+
+		/// <summary>
+		/// Removes one credit from the number of available coins
+		/// </summary>
+		private void SubtractCredit()
+		{
 			if (TotalCoins >= CoinsPerCredit)
 			{
 				TotalCoins -= CoinsPerCredit;
 			}
-
-			//Able to start a game!
-			return true;
 		}
 
 		/// <summary>
