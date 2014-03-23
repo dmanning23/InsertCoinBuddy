@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework;
 using System;
 
 namespace InsertCoinBuddy
 {
-	public class CreditsManager : GameComponent, ICreditsManager
+	public class CreditsManager : DrawableGameComponent, ICreditsManager
 	{
 		#region Fields
 
@@ -23,6 +24,14 @@ namespace InsertCoinBuddy
 		/// Used to exit menu screens
 		/// </summary>
 		public event EventHandler<EventArgs> OnCoinAdded;
+
+		private string CoinSoundName { get; set; }
+
+		private string PlayerJoinSoundName { get; set; }
+
+		private SoundEffect CoinSound { get; set; }
+
+		private SoundEffect PlayerJoinSound { get; set; }
 
 		#endregion //Fields
 
@@ -106,20 +115,41 @@ namespace InsertCoinBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Init
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager(Game game) : base(game)
+		public CreditsManager(Game game, string coinSound, string playerJoinSound) : base(game)
 		{
 			TotalCoins = 0;
 			CoinKey = Keys.L;
 			GameInPlay = false;
 			_prevKeys = new KeyboardState();
+			CoinSoundName = coinSound;
+			PlayerJoinSoundName = playerJoinSound;
 
 			Game.Services.AddService(typeof(ICreditsManager), this);
 		}
+
+		protected override void LoadContent()
+		{
+			if (!string.IsNullOrEmpty(CoinSoundName))
+			{
+				CoinSound = Game.Content.Load<SoundEffect>(CoinSoundName);
+			}
+
+			if (!string.IsNullOrEmpty(PlayerJoinSoundName))
+			{
+				PlayerJoinSound = Game.Content.Load<SoundEffect>(PlayerJoinSoundName);
+			}
+
+			base.LoadContent();
+		}
+
+		#endregion //Init
+
+		#region Methods
 
 		/// <summary>
 		/// Called each frame, checks the keyboard input for a coin drop
@@ -152,6 +182,11 @@ namespace InsertCoinBuddy
 		public void AddCoin()
 		{
 			TotalCoins++;
+
+			if (null != CoinSound)
+			{
+				CoinSound.Play();
+			}
 		}
 
 		/// <summary>
@@ -170,6 +205,12 @@ namespace InsertCoinBuddy
 
 			//remove a credit from the number of coins
 			SubtractCredit();
+
+			//play the sound for player join
+			if (null != PlayerJoinSound)
+			{
+				PlayerJoinSound.Play();
+			}
 
 			//Able to start a game!
 			return true;
@@ -191,6 +232,12 @@ namespace InsertCoinBuddy
 
 			//remove a credit from the number of coins
 			SubtractCredit();
+
+			//play the sound for player join
+			if (null != PlayerJoinSound)
+			{
+				PlayerJoinSound.Play();
+			}
 
 			//Able to join a game!
 			return true;
