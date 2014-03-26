@@ -274,4 +274,3 @@ namespace InsertCoinBuddy
 		#endregion //Methods
 	}
 }
-
