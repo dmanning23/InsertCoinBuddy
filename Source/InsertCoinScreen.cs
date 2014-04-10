@@ -49,12 +49,6 @@ namespace InsertCoinBuddy
 		public Vector2 InsertCoinTextLocation { get; set; }
 
 		/// <summary>
-		/// location of the "Credits: x/X" text
-		/// </summary>
-		/// <value>The number credits text location.</value>
-		public Vector2 NumCreditsTextLocation { get; set; }
-
-		/// <summary>
 		/// thing for writing "Insert Coin" text
 		/// </summary>
 		public PulsateBuddy InsertCoinFont { get; set; }
@@ -74,7 +68,6 @@ namespace InsertCoinBuddy
 		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, CreditsManager manager)
 		{
 			InsertCoinTextLocation = Vector2.Zero;
-			NumCreditsTextLocation = Vector2.Zero;
 			InsertCoinFont = new PulsateBuddy();
 			InsertCoinFont.PulsateSize = 0.25f;
 			NumCreditsFont = new FontBuddy();
@@ -100,13 +93,9 @@ namespace InsertCoinBuddy
 
 			//initialize some default locations for text
 
-			//Number of credits is displayed at the bottom of the screen
-			NumCreditsTextLocation = new Vector2(Resolution.TitleSafeArea.Center.X,
-				Resolution.TitleSafeArea.Bottom - NumCreditsFont.Font.LineSpacing);
-
 			//Insert coin stuff is displayed right above that
 			InsertCoinTextLocation = new Vector2(Resolution.TitleSafeArea.Center.X,
-				NumCreditsTextLocation.Y - InsertCoinFont.Font.LineSpacing);
+				Resolution.TitleSafeArea.Bottom - (2.0f * InsertCoinFont.Font.LineSpacing));
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -123,31 +112,43 @@ namespace InsertCoinBuddy
 				//Are there any credits in the system?
 				if ((2 <= _creditsManager.NumCredits) || _creditsManager.FreePlay)
 				{
-					DrawPressStart("Press 1P or 2P start!", gameTime);
+					DrawPressStart(6.0f, 1.2f, "Press 1P or 2P start!", gameTime);
 				}
 				else if (1 <= _creditsManager.NumCredits)
 				{
-					DrawPressStart("Press 1P Start!", gameTime);
+					DrawPressStart(6.0f, 1.2f, "Press 1P Start!", gameTime);
 				}
 				else
 				{
 					//draw in slowly pulsating white letters
-					InsertCoinFont.PulsateSpeed = 3.0f; //pulsate sloooowly
-					InsertCoinFont.Write(InsertCoinText(),
-						InsertCoinTextLocation,
-						TextJustification, 
-						1.0f, //write normal
-						Color.White,
-						ScreenManager.SpriteBatch,
-						gameTime.TotalGameTime.TotalSeconds);
+					DrawPressStart(3.0f, 1.0f, InsertCoinText(), gameTime);
 				}
+			}
+			else
+			{
+				//Game is in play, draw the text in the corners
+				DrawGameInPlayText(gameTime);
 			}
 
 			//Draw the number of credits text!
 			if (ShouldDisplayNumCredits())
 			{
+				//Number of credits is displayed at the bottom of the screen
+				Vector2 numCreditsTextLocation = Vector2.Zero;
+
+				if (_creditsManager.GameInPlay)
+				{
+					numCreditsTextLocation = new Vector2(Resolution.TitleSafeArea.Center.X,
+						Resolution.TitleSafeArea.Top);
+				}
+				else
+				{
+					numCreditsTextLocation = new Vector2(Resolution.TitleSafeArea.Center.X,
+						Resolution.TitleSafeArea.Bottom - NumCreditsFont.Font.LineSpacing);
+				}
+
 				NumCreditsFont.Write(NumCreditsText(),
-					NumCreditsTextLocation,
+					numCreditsTextLocation,
 					TextJustification, 
 					0.6f, //write normal
 					Color.White,
@@ -156,6 +157,48 @@ namespace InsertCoinBuddy
 			}
 
 			ScreenManager.SpriteBatchEnd();
+		}
+
+		private void DrawGameInPlayText(GameTime gameTime)
+		{
+			//is p1 playing?
+			if (!_creditsManager.P1Playing)
+			{
+				//draw the text in the upper left
+				DrawPlayerJoinText(true, gameTime);
+			}
+
+			//is p2 playing?
+			if (!_creditsManager.P2Playing)
+			{
+				//draw the text in the upper right
+				DrawPlayerJoinText(false, gameTime);
+			}
+		}
+
+		private void DrawPlayerJoinText(bool p1, GameTime gameTime)
+		{
+			//prepare the string for display
+			string text = "";
+			if ((1 <= _creditsManager.NumCredits) || _creditsManager.FreePlay)
+			{
+				text = string.Format("Press {0} start!", (p1 ? "1P" : "2P"));
+			}
+			else
+			{
+				text = InsertCoinText();
+			}
+
+			//prepare the justification for display
+			Justify justify = (p1 ? Justify.Left : Justify.Right);
+
+			//prepare the location
+			Vector2 location = (p1 ? 
+				new Vector2(Resolution.TitleSafeArea.Left, Resolution.TitleSafeArea.Top) :
+				new Vector2(Resolution.TitleSafeArea.Right, Resolution.TitleSafeArea.Top));
+
+			//write the text
+			DrawPressStart(2.0f, 0.5f, text, gameTime, location, justify);
 		}
 
 		/// <summary>
@@ -234,14 +277,26 @@ namespace InsertCoinBuddy
 		/// Draw the "press start" text
 		/// </summary>
 		/// <param name="strText">the text to write</param>
-		public void DrawPressStart(string strText, GameTime gameTime)
+		public void DrawPressStart(float pulsateSpeed, float size, string strText, GameTime gameTime)
 		{
 			//Draw in big pulsating letters
-			InsertCoinFont.PulsateSpeed = 6.0f; //pulsate faster
-			InsertCoinFont.Write(strText,
+			DrawPressStart(
+				pulsateSpeed,
+				size,
+				strText,
+				gameTime,
 				InsertCoinTextLocation,
-				TextJustification,
-				1.2f, //write bigger
+				TextJustification);
+		}
+
+		private void DrawPressStart(float pulsateSpeed, float size, string strText, GameTime gameTime, Vector2 location, Justify eJustify)
+		{
+			//Draw in big pulsating letters
+			InsertCoinFont.PulsateSpeed = pulsateSpeed; //pulsate faster
+			InsertCoinFont.Write(strText,
+				location,
+				eJustify,
+				size, //write bigger
 				Color.White,
 				ScreenManager.SpriteBatch,
 				gameTime.TotalGameTime.TotalSeconds);
@@ -250,4 +305,3 @@ namespace InsertCoinBuddy
 		#endregion
 	}
 }
-

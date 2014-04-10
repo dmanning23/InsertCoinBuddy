@@ -113,6 +113,16 @@ namespace InsertCoinBuddy
 		/// <value><c>true</c> if game in play; otherwise, <c>false</c>.</value>
 		public bool GameInPlay { get; set; }
 
+		/// <summary>
+		/// whether or not the p1 side is playing
+		/// </summary>
+		public bool P1Playing { get; set; }
+
+		/// <summary>
+		/// whether or not the p2 side is playing
+		/// </summary>
+		public bool P2Playing { get; set; }
+
 		#endregion //Properties
 
 		#region Init

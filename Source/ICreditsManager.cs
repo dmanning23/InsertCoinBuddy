@@ -15,5 +15,15 @@ namespace InsertCoinBuddy
 		/// </summary>
 		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
 		bool JoinGame();
+
+		/// <summary>
+		/// whether or not the p1 side is playing
+		/// </summary>
+		bool P1Playing { get; set; }
+
+		/// <summary>
+		/// whether or not the p2 side is playing
+		/// </summary>
+		bool P2Playing { get; set; }
 	}
 }
