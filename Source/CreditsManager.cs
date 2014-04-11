@@ -231,7 +231,7 @@ namespace InsertCoinBuddy
 		/// Check if they can join and update the coin state.
 		/// </summary>
 		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
-		public bool JoinGame()
+		public bool JoinGame(bool playSound)
 		{
 			//Are we able to join a game?
 			if (!GameInPlay || (!FreePlay && (1 > NumCredits)))
@@ -244,7 +244,7 @@ namespace InsertCoinBuddy
 			SubtractCredit();
 
 			//play the sound for player join
-			if (null != PlayerJoinSound)
+			if (playSound && (null != PlayerJoinSound))
 			{
 				PlayerJoinSound.Play();
 			}

@@ -14,7 +14,7 @@ namespace InsertCoinBuddy
 		/// Check if they can join and update the coin state.
 		/// </summary>
 		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
-		bool JoinGame();
+		bool JoinGame(bool playSound);
 
 		/// <summary>
 		/// whether or not the p1 side is playing
