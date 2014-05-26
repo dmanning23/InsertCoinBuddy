@@ -2,6 +2,7 @@ using FontBuddyLib;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 using System.Diagnostics;
 
@@ -155,6 +156,25 @@ namespace InsertCoinBuddy
 					ScreenManager.SpriteBatch,
 					gameTime.TotalGameTime.TotalSeconds);
 			}
+
+			//write some debug text
+			Vector2 pos = Vector2.Zero;
+			NumCreditsFont.Write(string.Format("X: {0}", Mouse.GetState().X),
+					pos,
+					TextJustification,
+					0.6f, //write normal
+					Color.White,
+					ScreenManager.SpriteBatch,
+					gameTime.TotalGameTime.TotalSeconds);
+			pos.Y += NumCreditsFont.Font.LineSpacing;
+			NumCreditsFont.Write(string.Format("Y: {0}", Mouse.GetState().Y),
+					pos,
+					TextJustification,
+					0.6f, //write normal
+					Color.White,
+					ScreenManager.SpriteBatch,
+					gameTime.TotalGameTime.TotalSeconds);
+			pos.Y += NumCreditsFont.Font.LineSpacing;
 
 			ScreenManager.SpriteBatchEnd();
 		}
