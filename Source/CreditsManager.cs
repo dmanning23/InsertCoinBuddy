@@ -17,7 +17,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// the coins per credit.
 		/// </summary>
-		private int _coinsPerCredit = 1;
+		private int _coinsPerCredit = 2;
 
 		/// <summary>
 		/// Event that gets called when a coin is dropped

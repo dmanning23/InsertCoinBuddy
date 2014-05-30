@@ -62,6 +62,9 @@
     <Compile Include="..\Source\CreditsManager.cs">
       <Link>CreditsManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ICreditsManager.cs">
+      <Link>ICreditsManager.cs</Link>
+    </Compile>
     <Compile Include="..\Source\InsertCoinScreen.cs">
       <Link>InsertCoinScreen.cs</Link>
     </Compile>
