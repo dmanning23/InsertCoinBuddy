@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.Windows.XNA", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResolutionBuddy.Windows.XNA", "..\externals\ResolutionBuddy\Windows.XNA\ResolutionBuddy.Windows.XNA.csproj", "{1012898A-B613-4A77-8AC9-E50C9E15D67A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixExtensions.Windows.XNA", "..\externals\MatrixExtensions\Windows.XNA\MatrixExtensions.Windows.XNA.csproj", "{0385A3F2-14F7-4D60-A988-1E32686BE221}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,16 @@ Global
 		{1012898A-B613-4A77-8AC9-E50C9E15D67A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1012898A-B613-4A77-8AC9-E50C9E15D67A}.Release|x86.ActiveCfg = Release|x86
 		{1012898A-B613-4A77-8AC9-E50C9E15D67A}.Release|x86.Build.0 = Release|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Debug|x86.ActiveCfg = Debug|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Debug|x86.Build.0 = Debug|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Release|Any CPU.ActiveCfg = Release|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Release|x86.ActiveCfg = Release|x86
+		{0385A3F2-14F7-4D60-A988-1E32686BE221}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

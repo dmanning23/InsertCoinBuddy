@@ -62,6 +62,9 @@
     <Compile Include="..\Source\CreditsManager.cs">
       <Link>CreditsManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ICreditsManager.cs">
+      <Link>ICreditsManager.cs</Link>
+    </Compile>
     <Compile Include="..\Source\InsertCoinScreen.cs">
       <Link>InsertCoinScreen.cs</Link>
     </Compile>
@@ -72,7 +75,7 @@
       <Project>{2A84DFE8-75E0-4774-BAAF-00629ED44405}</Project>
       <Name>Filename.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FontBuddy\Windows.XNA\FontBuddy.Windows.XNA.csproj">
+    <ProjectReference Include="..\externals\FontBuddy\Windows.XNA\FontBuddy.Windows.XNA.csproj">
       <Project>{72F572D0-338C-45EB-AB95-45F8EAFF5A7D}</Project>
       <Name>FontBuddy.Windows.XNA</Name>
     </ProjectReference>
@@ -84,11 +87,11 @@
       <Project>{13B04F1A-2DF6-426D-B0C5-300F9ED2AA5A}</Project>
       <Name>HadoukInput.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MenuBuddy\Windows.XNA\MenuBuddy.Windows.XNA.csproj">
+    <ProjectReference Include="..\externals\MenuBuddy\Windows.XNA\MenuBuddy.Windows.XNA.csproj">
       <Project>{73C84964-C3F0-41D2-9B76-BB8C88E447F6}</Project>
       <Name>MenuBuddy.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ResolutionBuddy\Windows.XNA\ResolutionBuddy.Windows.XNA.csproj">
+    <ProjectReference Include="..\externals\ResolutionBuddy\Windows.XNA\ResolutionBuddy.Windows.XNA.csproj">
       <Project>{1012898A-B613-4A77-8AC9-E50C9E15D67A}</Project>
       <Name>ResolutionBuddy.Windows.XNA</Name>
     </ProjectReference>
