@@ -15,11 +15,6 @@ namespace InsertCoinBuddy
 		private KeyboardState _prevKeys;
 
 		/// <summary>
-		/// the coins per credit.
-		/// </summary>
-		private int _coinsPerCredit = 2;
-
-		/// <summary>
 		/// Event that gets called when a coin is dropped
 		/// Used to exit menu screens
 		/// </summary>
@@ -41,21 +36,7 @@ namespace InsertCoinBuddy
 		/// Gets or sets the coins per credit.
 		/// </summary>
 		/// <value>The coins per credit.</value>
-		public int CoinsPerCredit
-		{
-			get
-			{
-				return _coinsPerCredit;
-			}
-			set
-			{
-				//Guard against divide by zero
-				if (value > 0)
-				{
-					_coinsPerCredit = value;
-				}
-			}
-		}
+		public int CoinsPerCredit { get; set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="InsertCoinBuddy.CreditsWatcher"/> is on free play.
@@ -83,7 +64,15 @@ namespace InsertCoinBuddy
 		{ 
 			get
 			{
-				return TotalCoins % CoinsPerCredit;
+				//guard against divide by zero
+				if (CoinsPerCredit > 0)
+				{
+					return TotalCoins % CoinsPerCredit;
+				}
+				else
+				{
+					return TotalCoins;
+				}
 			}
 		}
 
@@ -96,7 +85,15 @@ namespace InsertCoinBuddy
 		{ 
 			get
 			{
-				return TotalCoins / CoinsPerCredit;
+				//guard against divide by zero
+				if (CoinsPerCredit > 0)
+				{
+					return TotalCoins / CoinsPerCredit;
+				}
+				else
+				{
+					return TotalCoins;
+				}
 			}
 		}
 
@@ -130,7 +127,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager(Game game, string coinSound, string playerJoinSound) : base(game)
+		public CreditsManager(Game game, string coinSound, string playerJoinSound, int coinsPerCredit) : base(game)
 		{
 			TotalCoins = 0;
 			CoinKey = Keys.L;
@@ -138,6 +135,7 @@ namespace InsertCoinBuddy
 			_prevKeys = new KeyboardState();
 			CoinSoundName = coinSound;
 			PlayerJoinSoundName = playerJoinSound;
+			CoinsPerCredit = coinsPerCredit;
 
 			Game.Services.AddService(typeof(ICreditsManager), this);
 		}
