@@ -14,6 +14,8 @@ namespace InsertCoinBuddy
 		/// </summary>
 		private KeyboardState _prevKeys;
 
+		private GamePadState[] _prevGamePadStates;
+
 		/// <summary>
 		/// Event that gets called when a coin is dropped
 		/// Used to exit menu screens
@@ -105,6 +107,12 @@ namespace InsertCoinBuddy
 		public Keys CoinKey { get; set; }
 
 		/// <summary>
+		/// the game pad button to listen for coin drops
+		/// defaults to ltrigger.
+		/// </summary>
+		public Buttons CoinButton { get; set; }
+
+		/// <summary>
 		/// Gets or sets a value indicating whether a game is in play.
 		/// </summary>
 		/// <value><c>true</c> if game in play; otherwise, <c>false</c>.</value>
@@ -127,15 +135,21 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager(Game game, string coinSound, string playerJoinSound, int coinsPerCredit) : base(game)
+		public CreditsManager(Game game, 
+			string coinSound, 
+			string playerJoinSound, 
+			int coinsPerCredit) : base(game)
 		{
 			TotalCoins = 0;
 			CoinKey = Keys.L;
+			CoinButton = Buttons.LeftTrigger;
 			GameInPlay = false;
 			_prevKeys = new KeyboardState();
 			CoinSoundName = coinSound;
 			PlayerJoinSoundName = playerJoinSound;
 			CoinsPerCredit = coinsPerCredit;
+
+			_prevGamePadStates = new GamePadState[2];
 
 			Game.Services.AddService(typeof(ICreditsManager), this);
 		}
@@ -167,21 +181,41 @@ namespace InsertCoinBuddy
 			//update the keyboard state
 			KeyboardState curKeys = Keyboard.GetState();
 
-			//Check for a coin drop
+			//Check for a coin drop on keyboard
 			if (curKeys.IsKeyDown(CoinKey) && _prevKeys.IsKeyUp(CoinKey))
 			{
-				//Detected a coin drop!
-				AddCoin();
-				if (OnCoinAdded != null)
-				{
-					OnCoinAdded(this, new EventArgs());
-				}
+				CoinDrop();
 			}
 
 			//update the prev state
 			_prevKeys = curKeys;
 
+			for (int i = 0; i < 2; i++)
+			{
+				//get the current state
+				GamePadState curPad = GamePad.GetState((PlayerIndex)i);
+
+				//check for coin drop on gamepad
+				if (curPad.IsButtonDown(CoinButton) && _prevGamePadStates[i].IsButtonUp(CoinButton))
+				{
+					CoinDrop();
+				}
+
+				//update the prev state
+				_prevGamePadStates[i] = curPad;
+			}
+
 			base.Update(gameTime);
+		}
+
+		private void CoinDrop()
+		{
+			//Detected a coin drop!
+			AddCoin();
+			if (OnCoinAdded != null)
+			{
+				OnCoinAdded(this, new EventArgs());
+			}
 		}
 
 		/// <summary>
