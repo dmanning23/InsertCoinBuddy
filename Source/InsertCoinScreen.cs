@@ -2,7 +2,6 @@ using FontBuddyLib;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 using System.Diagnostics;
 
@@ -16,7 +15,7 @@ namespace InsertCoinBuddy
 	/// At the bottom of the screen, displays the number of credits
 	/// Credits: [NumCredits] [NumCoins]/[CoinsPerCredit]
 	/// </summary>
-	public class InsertCoinScreen : GameScreen
+	public class InsertCoinScreen : Screen
 	{
 		#region Fields
 
@@ -154,7 +153,7 @@ namespace InsertCoinBuddy
 					0.6f, //write normal
 					Color.White,
 					ScreenManager.SpriteBatch,
-					gameTime.TotalGameTime.TotalSeconds);
+					Time);
 			}
 
 			ScreenManager.SpriteBatchEnd();
@@ -300,7 +299,7 @@ namespace InsertCoinBuddy
 				size, //write bigger
 				Color.White,
 				ScreenManager.SpriteBatch,
-				gameTime.TotalGameTime.TotalSeconds);
+				Time);
 		}
 
 		#endregion

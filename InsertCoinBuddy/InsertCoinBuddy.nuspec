@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>InsertCoinBuddy</id>
+		<version>1.0.0</version>
+		<title>InsertCoinBuddy</title>
+		<authors>dmanning23</authors>
+		<owners>dmanning23</owners>
+		<projectUrl>https://github.com/dmanning23/InsertCoinBuddy</projectUrl>
+		<licenseUrl>https://github.com/dmanning23/InsertCoinBuddy/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>A very simple MonoGame library that sits and listens for coin drops (keyboard press, etc.) and tracks number of credits.</description>
+		<releaseNotes />
+		<copyright>Copyright 2016</copyright>
+		<tags>pcl, windows phone, winphone, android, ios, windows universal, monogame</tags>
+		<dependencies>
+
+			<!--Xamarin.Android-->
+			<group targetFramework="MonoAndroid10">
+				<dependency id="MonoGame.Framework.Android" version="3.5"/>
+				<dependency id="FilenameBuddy" version="1.0.1"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
+				<dependency id="GameTimer" version="1.0"/>
+				<dependency id="HadoukInput" version="1.0"/>
+				<dependency id="InputHelper" version="1.0.1"/>
+				<dependency id="MatrixExtensions" version="1.0"/>
+				<dependency id="MenuBuddy" version="1.0"/>
+				<dependency id="MouseBuddy" version="1.0"/>
+				<dependency id="PrimitiveBuddy" version="1.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
+				<dependency id="ResolutionBuddy" version="1.0"/>
+				<dependency id="StateMachineBuddy" version="1.0"/>
+				<dependency id="TouchScreenBuddy" version="1.0"/>
+				<dependency id="Vector2Extensions" version="1.0.1"/>
+				<dependency id="XmlBuddy" version="1.0"/>
+			</group>
+
+			<!--Xamarin.iOS Unified-->
+			<group targetFramework="Xamarin.iOS10">
+				<dependency id="MonoGame.Framework.iOS" version="3.5"/>
+				<dependency id="FilenameBuddy" version="1.0.1"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
+				<dependency id="GameTimer" version="1.0"/>
+				<dependency id="HadoukInput" version="1.0"/>
+				<dependency id="InputHelper" version="1.0.1"/>
+				<dependency id="MatrixExtensions" version="1.0"/>
+				<dependency id="MenuBuddy" version="1.0"/>
+				<dependency id="MouseBuddy" version="1.0"/>
+				<dependency id="PrimitiveBuddy" version="1.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
+				<dependency id="ResolutionBuddy" version="1.0"/>
+				<dependency id="StateMachineBuddy" version="1.0"/>
+				<dependency id="TouchScreenBuddy" version="1.0"/>
+				<dependency id="Vector2Extensions" version="1.0.1"/>
+				<dependency id="XmlBuddy" version="1.0"/>
+			</group>
+
+			<!--Win Universal-->
+			<group targetFramework="uap10.0">
+				<dependency id="MonoGame.Framework.WindowsUniversal" version="3.5"/>
+				<dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.1"/>
+				<dependency id="FilenameBuddy" version="1.0.1"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
+				<dependency id="GameTimer" version="1.0"/>
+				<dependency id="HadoukInput" version="1.0"/>
+				<dependency id="InputHelper" version="1.0.1"/>
+				<dependency id="MatrixExtensions" version="1.0"/>
+				<dependency id="MenuBuddy" version="1.0"/>
+				<dependency id="MouseBuddy" version="1.0"/>
+				<dependency id="PrimitiveBuddy" version="1.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
+				<dependency id="ResolutionBuddy" version="1.0"/>
+				<dependency id="StateMachineBuddy" version="1.0"/>
+				<dependency id="TouchScreenBuddy" version="1.0"/>
+				<dependency id="Vector2Extensions" version="1.0.1"/>
+				<dependency id="XmlBuddy" version="1.0"/>
+			</group>
+
+			<group targetFramework="net451">
+				<dependency id="MonoGame.Framework.DesktopGL" version="3.5"/>
+				<dependency id="FilenameBuddy" version="1.0.1"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
+				<dependency id="GameTimer" version="1.0"/>
+				<dependency id="HadoukInput" version="1.0"/>
+				<dependency id="InputHelper" version="1.0.1"/>
+				<dependency id="MatrixExtensions" version="1.0"/>
+				<dependency id="MenuBuddy" version="1.0"/>
+				<dependency id="MouseBuddy" version="1.0"/>
+				<dependency id="PrimitiveBuddy" version="1.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
+				<dependency id="ResolutionBuddy" version="1.0"/>
+				<dependency id="StateMachineBuddy" version="1.0"/>
+				<dependency id="TouchScreenBuddy" version="1.0"/>
+				<dependency id="Vector2Extensions" version="1.0.1"/>
+				<dependency id="XmlBuddy" version="1.0"/>
+			</group>
+
+		</dependencies>
+	</metadata>
+	<files>
+
+		<!--Xamarin.Android-->
+		<file src="InsertCoinBuddy.Android\bin\Release\InsertCoinBuddy.Android.pdb" target="lib\MonoAndroid10\InsertCoinBuddy.Android.pdb" />
+		<file src="InsertCoinBuddy.Android\bin\Release\InsertCoinBuddy.Android.dll" target="lib\MonoAndroid10\InsertCoinBuddy.Android.dll" />
+
+		<!--Xamarin.iOS Unified-->
+		<file src="InsertCoinBuddy.iOS\bin\Release\InsertCoinBuddy.iOS.pdb" target="lib\Xamarin.iOS10\InsertCoinBuddy.iOS.pdb" />
+		<file src="InsertCoinBuddy.iOS\bin\Release\InsertCoinBuddy.iOS.dll" target="lib\Xamarin.iOS10\InsertCoinBuddy.iOS.dll" />
+
+		<!--Windows Universal-->
+		<file src="InsertCoinBuddy.WindowsUniversal\bin\Release\InsertCoinBuddy.WindowsUniversal.pdb" target="lib\uap10.0\InsertCoinBuddy.WindowsUniversal.pdb" />
+		<file src="InsertCoinBuddy.WindowsUniversal\bin\Release\InsertCoinBuddy.WindowsUniversal.dll" target="lib\uap10.0\InsertCoinBuddy.WindowsUniversal.dll" />
+
+		<!--DesktopGL-->
+		<file src="InsertCoinBuddy.DesktopGL\bin\Release\InsertCoinBuddy.DesktopGL.pdb" target="lib\net451\InsertCoinBuddy.DesktopGL.pdb" />
+		<file src="InsertCoinBuddy.DesktopGL\bin\Release\InsertCoinBuddy.DesktopGL.dll" target="lib\net451\InsertCoinBuddy.DesktopGL.dll" />
+
+	</files>
+</package>
