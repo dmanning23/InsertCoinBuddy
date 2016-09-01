@@ -16,12 +16,6 @@ namespace InsertCoinBuddy
 
 		private GamePadState[] _prevGamePadStates;
 
-		/// <summary>
-		/// Event that gets called when a coin is dropped
-		/// Used to exit menu screens
-		/// </summary>
-		public event EventHandler<EventArgs> OnCoinAdded;
-
 		private string CoinSoundName { get; set; }
 
 		private string PlayerJoinSoundName { get; set; }
@@ -29,6 +23,16 @@ namespace InsertCoinBuddy
 		private SoundEffect CoinSound { get; set; }
 
 		private SoundEffect PlayerJoinSound { get; set; }
+
+		private bool _gameInPlay;
+
+		private bool[] _currentPlayers = new bool[] { false, false, false, false };
+
+		/// <summary>
+		/// Event that gets called when a coin is dropped
+		/// Used to exit menu screens
+		/// </summary>
+		public event EventHandler<EventArgs> OnCoinAdded;
 
 		#endregion //Fields
 
@@ -44,7 +48,7 @@ namespace InsertCoinBuddy
 		/// Gets or sets a value indicating whether this <see cref="InsertCoinBuddy.CreditsWatcher"/> is on free play.
 		/// </summary>
 		/// <value><c>true</c> if free play; otherwise, <c>false</c>.</value>
-		public bool FreePlay 
+		public bool FreePlay
 		{
 			get
 			{
@@ -63,7 +67,7 @@ namespace InsertCoinBuddy
 		/// </summary>
 		/// <value>The number coins.</value>
 		public int NumCoins
-		{ 
+		{
 			get
 			{
 				//guard against divide by zero
@@ -84,7 +88,7 @@ namespace InsertCoinBuddy
 		/// </summary>
 		/// <value>The number of complete credits.</value>
 		public int NumCredits
-		{ 
+		{
 			get
 			{
 				//guard against divide by zero
@@ -116,17 +120,36 @@ namespace InsertCoinBuddy
 		/// Gets or sets a value indicating whether a game is in play.
 		/// </summary>
 		/// <value><c>true</c> if game in play; otherwise, <c>false</c>.</value>
-		public bool GameInPlay { get; set; }
+		public bool GameInPlay
+		{
+			get
+			{
+				return _gameInPlay;
+			}
+			set
+			{
+				_gameInPlay = value;
+				if (!GameInPlay)
+				{
+					for (int i = 0; i < 4; i++)
+					{
+						_currentPlayers[i] = false;
+					}
+				}
+			}
+		}
 
 		/// <summary>
-		/// whether or not the p1 side is playing
+		/// Get the number of coins the player needs to enter before they will complete a credit
 		/// </summary>
-		public bool P1Playing { get; set; }
-
-		/// <summary>
-		/// whether or not the p2 side is playing
-		/// </summary>
-		public bool P2Playing { get; set; }
+		/// <returns>The coins needed for next credit.</returns>
+		public int NumCoinsNeededForNextCredit
+		{
+			get
+			{
+				return CoinsPerCredit - NumCoins;
+			}
+		}
 
 		#endregion //Properties
 
@@ -135,9 +158,9 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager(Game game, 
-			string coinSound, 
-			string playerJoinSound, 
+		public CreditsManager(Game game,
+			string coinSound,
+			string playerJoinSound,
 			int coinsPerCredit) : base(game)
 		{
 			TotalCoins = 0;
@@ -236,7 +259,7 @@ namespace InsertCoinBuddy
 		/// Check if they can start a game and update the coin state.
 		/// </summary>
 		/// <returns><c>true</c> if able to start a game, <c>false</c> otherwise.</returns>
-		public bool StartGame()
+		public bool StartGame(PlayerIndex player)
 		{
 			//Are we able to start a game?
 			if (GameInPlay || (!FreePlay && (1 > NumCredits)))
@@ -254,6 +277,9 @@ namespace InsertCoinBuddy
 				PlayerJoinSound.Play();
 			}
 
+			//Set the player as playing
+			AddPlayer(player);
+
 			//Able to start a game!
 			return true;
 		}
@@ -263,12 +289,14 @@ namespace InsertCoinBuddy
 		/// Check if they can join and update the coin state.
 		/// </summary>
 		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
-		public bool JoinGame(bool playSound)
+		public bool JoinGame(PlayerIndex player, bool playSound)
 		{
 			//Are we able to join a game?
-			if (!GameInPlay || (!FreePlay && (1 > NumCredits)))
+			if (!GameInPlay || 
+				(!FreePlay && (1 > NumCredits) ||
+				IsPlaying(player)))
 			{
-				//Game is not in play, or no credits and not in free play mode! 
+				//Game is not in play, or no credits and not in free play mode, or the player is already playing!
 				return false;
 			}
 
@@ -281,8 +309,16 @@ namespace InsertCoinBuddy
 				PlayerJoinSound.Play();
 			}
 
+			//Set the player as playing
+			AddPlayer(player);
+
 			//Able to join a game!
 			return true;
+		}
+
+		private void AddPlayer(PlayerIndex player)
+		{
+			_currentPlayers[(int)player] = true;
 		}
 
 		/// <summary>
@@ -304,13 +340,9 @@ namespace InsertCoinBuddy
 			TotalCoins = 0;
 		}
 
-		/// <summary>
-		/// Get the number of coins the player needs to enter before they will complete a credit
-		/// </summary>
-		/// <returns>The coins needed for next credit.</returns>
-		public int NumCoinsNeededForNextCredit()
+		public bool IsPlaying(PlayerIndex player)
 		{
-			return CoinsPerCredit - NumCoins;
+			return _currentPlayers[(int)player];
 		}
 
 		#endregion //Methods

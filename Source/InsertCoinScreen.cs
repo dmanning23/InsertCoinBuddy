@@ -32,7 +32,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// The thing that actually manages the number of credits for this screen.
 		/// </summary>
-		private CreditsManager _creditsManager;
+		private ICreditsManager _creditsManager;
 
 		/// <summary>
 		/// how to justify all the text for this screen
@@ -65,7 +65,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Constructor fills in the menu contents.
 		/// </summary>
-		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, CreditsManager manager)
+		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, ICreditsManager manager)
 		{
 			InsertCoinTextLocation = Vector2.Zero;
 			InsertCoinFont = new PulsateBuddy();
@@ -162,14 +162,14 @@ namespace InsertCoinBuddy
 		private void DrawGameInPlayText(GameTime gameTime)
 		{
 			//is p1 playing?
-			if (!_creditsManager.P1Playing)
+			if (!_creditsManager.IsPlaying(PlayerIndex.One))
 			{
 				//draw the text in the upper left
 				DrawPlayerJoinText(true, gameTime);
 			}
 
 			//is p2 playing?
-			if (!_creditsManager.P2Playing)
+			if (!_creditsManager.IsPlaying(PlayerIndex.Two))
 			{
 				//draw the text in the upper right
 				DrawPlayerJoinText(false, gameTime);
@@ -225,7 +225,7 @@ namespace InsertCoinBuddy
 		/// <returns>The coin text.</returns>
 		public string InsertCoinText()
 		{
-			if (_creditsManager.NumCoinsNeededForNextCredit() == 1)
+			if (_creditsManager.NumCoinsNeededForNextCredit == 1)
 			{
 				return "Insert Coin";
 			}
