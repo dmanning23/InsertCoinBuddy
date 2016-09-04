@@ -32,7 +32,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// The thing that actually manages the number of credits for this screen.
 		/// </summary>
-		private ICreditsManager _creditsManager;
+		private IInsertCoinComponent _creditsManager;
 
 		/// <summary>
 		/// how to justify all the text for this screen
@@ -65,7 +65,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Constructor fills in the menu contents.
 		/// </summary>
-		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, ICreditsManager manager)
+		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, IInsertCoinComponent manager)
 		{
 			InsertCoinTextLocation = Vector2.Zero;
 			InsertCoinFont = new PulsateBuddy();

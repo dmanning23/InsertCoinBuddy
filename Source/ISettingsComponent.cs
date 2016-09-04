@@ -1,6 +1,8 @@
+using Microsoft.Xna.Framework;
+
 namespace InsertCoinBuddy
 {
-	public interface ISettingsComponent
+	public interface ISettingsComponent : IGameComponent
 	{
 		Settings Settings { get; }
 

@@ -32,11 +32,6 @@ namespace InsertCoinBuddy
 		public Settings Settings { get; private set; }
 
 		/// <summary>
-		/// the screen manager, used to pop up the settings screen
-		/// </summary>
-		protected ScreenManager ScreenManager { get; private set; }
-
-		/// <summary>
 		/// the key to press to bring up the menu screen
 		/// </summary>
 		protected Keys MenuKey { get; set; }
@@ -46,12 +41,7 @@ namespace InsertCoinBuddy
 		/// </summary>
 		protected Buttons MenuButton { get; set; }
 
-		/// <summary>
-		/// The name of the settings screen, used to check if one is already displayed
-		/// </summary>
-		private string SettingsScreenName { get; set; }
-
-		private ICreditsManager CreditsManager { get; set; }
+		private IInsertCoinComponent InsertCoinComponent { get; set; }
 
 		#endregion //Properties
 
@@ -61,18 +51,17 @@ namespace InsertCoinBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="game"></param>
-		/// <param name="screenManager"></param>
 		/// <param name="menuKey">the key to press to bring up the settings screen</param>
 		/// <param name="menuButton">the controller button to bring up the settings screen</param>
 		public SettingsComponent(Game game, 
-			ScreenManager screenManager, 
 			Keys menuKey,
 			Buttons menuButton)
 			: base(game)
 		{
-			ScreenManager = screenManager;
 			MenuKey = menuKey;
 			MenuButton = menuButton;
+
+			Game.Services.AddService<ISettingsComponent>(this);
 		}
 
 		/// <summary>
@@ -80,22 +69,10 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public override void Initialize()
 		{
-			//load settingsfile
-			using (var db = SQLiteConnectionHelper.GetConnection(_db))
+			InsertCoinComponent = Game.Services.GetService<IInsertCoinComponent>();
+			if (null == InsertCoinComponent)
 			{
-				//this will create the table if it doesn exist, upgrade if it has changed, or nothing if it is the same
-				db.CreateTable<Settings>();
-			}
-
-			//get teh screen name
-			var screen = CreateSettingsScreen();
-			SettingsScreenName = screen.ScreenName;
-
-			CreditsManager = Game.Services.GetService(typeof(ICreditsManager)) as ICreditsManager;
-
-			if (null == CreditsManager)
-			{
-				throw new Exception("Tried to initialize SettingsComponent, but CreditsManager was missing");
+				throw new Exception("Tried to initialize SettingsComponent, but InsertCoinComponent was missing");
 			}
 
 			base.Initialize();
@@ -117,12 +94,12 @@ namespace InsertCoinBuddy
 			if (ScreenRequest())
 			{
 				//check if the menu is already being displayed
-				var screen = ScreenManager.FindScreen(SettingsScreenName);
-				if (null == screen)
+				var screen = CreateSettingsScreen();
+				var screenManager = Game.Services.GetService<IScreenManager>();
+				if (null == screenManager.FindScreen(screen.ScreenName))
 				{
 					//add a settings screen and display it
-					screen = CreateSettingsScreen();
-					ScreenManager.AddScreen(screen, null);
+					screenManager.AddScreen(screen, null);
 				}
 			}
 		}
@@ -143,8 +120,10 @@ namespace InsertCoinBuddy
 		/// <returns></returns>
 		private SettingsScreen CreateSettingsScreen()
 		{
-			var screen = new T();
-			screen.Init(this);
+			var screen = new T()
+			{
+				Settings = this
+			};
 			return screen;
 		}
 
@@ -153,6 +132,13 @@ namespace InsertCoinBuddy
 		/// </summary>
 		private void LoadSettings()
 		{
+			//load settingsfile
+			using (var db = SQLiteConnectionHelper.GetConnection(_db))
+			{
+				//this will create the table if it doesn exist, upgrade if it has changed, or nothing if it is the same
+				db.CreateTable<Settings>();
+			}
+
 			//load from the db
 			lock (locker)
 			{
@@ -167,7 +153,7 @@ namespace InsertCoinBuddy
 			}
 
 			//set the num coins per credit
-			CreditsManager.CoinsPerCredit = Settings.CoinsPerCredit;
+			InsertCoinComponent.CoinsPerCredit = Settings.CoinsPerCredit;
 		}
 
 		public void SaveSettings()

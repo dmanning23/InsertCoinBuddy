@@ -5,7 +5,7 @@ using System;
 
 namespace InsertCoinBuddy
 {
-	public class CreditsManager : DrawableGameComponent, ICreditsManager
+	public class InsertCoinComponent : DrawableGameComponent, IInsertCoinComponent
 	{
 		#region Fields
 
@@ -158,7 +158,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InsertCoinBuddy.CreditsWatcher"/> class.
 		/// </summary>
-		public CreditsManager(Game game,
+		public InsertCoinComponent(Game game,
 			string coinSound,
 			string playerJoinSound,
 			int coinsPerCredit) : base(game)
@@ -174,7 +174,7 @@ namespace InsertCoinBuddy
 
 			_prevGamePadStates = new GamePadState[2];
 
-			Game.Services.AddService(typeof(ICreditsManager), this);
+			Game.Services.AddService<IInsertCoinComponent>(this);
 		}
 
 		protected override void LoadContent()

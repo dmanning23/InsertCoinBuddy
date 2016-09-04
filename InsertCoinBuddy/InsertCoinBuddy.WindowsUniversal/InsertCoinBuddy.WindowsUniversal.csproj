@@ -107,11 +107,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\CreditsManager.cs">
-      <Link>CreditsManager.cs</Link>
+    <Compile Include="..\..\Source\IInsertCoinComponent.cs">
+      <Link>IInsertCoinComponent.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\ICreditsManager.cs">
-      <Link>ICreditsManager.cs</Link>
+    <Compile Include="..\..\Source\InsertCoinComponent.cs">
+      <Link>InsertCoinComponent.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\InsertCoinScreen.cs">
       <Link>InsertCoinScreen.cs</Link>

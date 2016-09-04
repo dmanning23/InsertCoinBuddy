@@ -52,7 +52,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.16\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
+      <HintPath>..\packages\InputHelper.1.0.17\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -119,11 +119,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\CreditsManager.cs">
-      <Link>CreditsManager.cs</Link>
+    <Compile Include="..\..\Source\IInsertCoinComponent.cs">
+      <Link>IInsertCoinComponent.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\ICreditsManager.cs">
-      <Link>ICreditsManager.cs</Link>
+    <Compile Include="..\..\Source\InsertCoinComponent.cs">
+      <Link>InsertCoinComponent.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\InsertCoinScreen.cs">
       <Link>InsertCoinScreen.cs</Link>

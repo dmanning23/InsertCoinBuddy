@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace InsertCoinBuddy
 {
-	public interface ICreditsManager
+	public interface IInsertCoinComponent : IGameComponent
 	{
 		/// <summary>
 		/// Gets or sets the coins per credit.

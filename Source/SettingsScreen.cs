@@ -35,7 +35,7 @@ namespace InsertCoinBuddy
 
 		private MenuEntry _doneMenuEntry;
 
-		private ISettingsComponent Settings { get; set; }
+		public ISettingsComponent Settings { get; set; }
 
 		#endregion
 
@@ -51,9 +51,9 @@ namespace InsertCoinBuddy
 			CoveredByOtherScreens = false;
 		}
 
-		public virtual void Init(ISettingsComponent settings)
+		public override void LoadContent()
 		{
-			Settings = settings;
+			base.LoadContent();
 
 			//Create our menu entries.
 			_difficulty = new MenuEntryInt("Difficulty", Settings.Settings.Difficulty)
