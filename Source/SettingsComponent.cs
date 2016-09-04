@@ -54,8 +54,8 @@ namespace InsertCoinBuddy
 		/// <param name="menuKey">the key to press to bring up the settings screen</param>
 		/// <param name="menuButton">the controller button to bring up the settings screen</param>
 		public SettingsComponent(Game game, 
-			Keys menuKey,
-			Buttons menuButton)
+			Keys menuKey = Keys.K,
+			Buttons menuButton = Buttons.Back)
 			: base(game)
 		{
 			MenuKey = menuKey;
