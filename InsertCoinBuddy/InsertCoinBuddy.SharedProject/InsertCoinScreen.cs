@@ -3,6 +3,7 @@ using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
+using System;
 using System.Diagnostics;
 
 namespace InsertCoinBuddy
@@ -34,11 +35,6 @@ namespace InsertCoinBuddy
 		/// </summary>
 		private IInsertCoinComponent _creditsManager;
 
-		/// <summary>
-		/// how to justify all the text for this screen
-		/// </summary>
-		public Justify TextJustification { get; set; }
-
 		#endregion //Fields
 
 		#region Properties
@@ -65,17 +61,16 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Constructor fills in the menu contents.
 		/// </summary>
-		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, IInsertCoinComponent manager)
+		public InsertCoinScreen(string strInsertCoinFont, string strNumCreditsFont, IInsertCoinComponent insertCoin)
 		{
-			InsertCoinTextLocation = Vector2.Zero;
-			InsertCoinFont = new PulsateBuddy();
-			InsertCoinFont.PulsateSize = 0.25f;
-			NumCreditsFont = new FontBuddy();
+			if (null == insertCoin)
+			{
+				throw new ArgumentNullException("insertCoin");
+			}
+
 			_insertCoinFontName = strInsertCoinFont;
 			_numCreditsFontName = strNumCreditsFont;
-			_creditsManager = manager;
-			Debug.Assert(null != _creditsManager);
-			TextJustification = Justify.Center;
+			_creditsManager = insertCoin;
 		}
 
 		#endregion //Initialization
@@ -88,7 +83,11 @@ namespace InsertCoinBuddy
 		public override void LoadContent()
 		{
 			//load teh fonts
+			InsertCoinFont = new PulsateBuddy();
+			InsertCoinFont.PulsateSize = 0.25f;
 			InsertCoinFont.Font = ScreenManager.Game.Content.Load<SpriteFont>(_insertCoinFontName);
+
+			NumCreditsFont = new FontBuddy();
 			NumCreditsFont.Font = ScreenManager.Game.Content.Load<SpriteFont>(_numCreditsFontName);
 
 			//initialize some default locations for text
@@ -149,7 +148,7 @@ namespace InsertCoinBuddy
 
 				NumCreditsFont.Write(NumCreditsText(),
 					numCreditsTextLocation,
-					TextJustification, 
+					Justify.Center, 
 					0.6f, //write normal
 					Color.White,
 					ScreenManager.SpriteBatch,
@@ -286,7 +285,7 @@ namespace InsertCoinBuddy
 				strText,
 				gameTime,
 				InsertCoinTextLocation,
-				TextJustification);
+				Justify.Center);
 		}
 
 		private void DrawPressStart(float pulsateSpeed, float size, string strText, GameTime gameTime, Vector2 location, Justify eJustify)
