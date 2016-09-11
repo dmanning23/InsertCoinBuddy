@@ -174,6 +174,7 @@ namespace InsertCoinBuddy
 
 			_prevGamePadStates = new GamePadState[2];
 
+			Game.Components.Add(this);
 			Game.Services.AddService<IInsertCoinComponent>(this);
 		}
 

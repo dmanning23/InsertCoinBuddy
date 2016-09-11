@@ -61,6 +61,7 @@ namespace InsertCoinBuddy
 			MenuKey = menuKey;
 			MenuButton = menuButton;
 
+			Game.Components.Add(this);
 			Game.Services.AddService<ISettingsComponent>(this);
 		}
 

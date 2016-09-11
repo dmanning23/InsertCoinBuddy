@@ -116,31 +116,15 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\IInsertCoinComponent.cs">
-      <Link>IInsertCoinComponent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\InsertCoinComponent.cs">
-      <Link>InsertCoinComponent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\InsertCoinScreen.cs">
-      <Link>InsertCoinScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ISettingsComponent.cs">
-      <Link>ISettingsComponent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Settings.cs">
-      <Link>Settings.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\SettingsComponent.cs">
-      <Link>SettingsComponent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\SettingsScreen.cs">
-      <Link>SettingsScreen.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\Content\Settings.db">
+      <Link>Settings.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\InsertCoinBuddy.SharedProject\InsertCoinBuddy.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
