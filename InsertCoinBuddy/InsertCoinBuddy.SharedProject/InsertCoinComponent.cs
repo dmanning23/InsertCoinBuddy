@@ -172,7 +172,7 @@ namespace InsertCoinBuddy
 			PlayerJoinSoundName = playerJoinSound;
 			CoinsPerCredit = coinsPerCredit;
 
-			_prevGamePadStates = new GamePadState[2];
+			_prevGamePadStates = new GamePadState[4];
 
 			Game.Components.Add(this);
 			Game.Services.AddService<IInsertCoinComponent>(this);
@@ -214,7 +214,7 @@ namespace InsertCoinBuddy
 			//update the prev state
 			_prevKeys = curKeys;
 
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				//get the current state
 				GamePadState curPad = GamePad.GetState((PlayerIndex)i);
