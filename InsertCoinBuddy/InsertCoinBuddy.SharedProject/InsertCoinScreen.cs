@@ -198,14 +198,18 @@ namespace InsertCoinBuddy
 			//Game is in play, draw the text in the corners
 			DrawGameInPlayText(gameTime);
 
-			//number of credits is displayed at top of the screen
-			NumCreditsFont.Write(NumCreditsText(),
+			//Draw the number of credits text!
+			if (ShouldDisplayNumCredits())
+			{
+				//number of credits is displayed at top of the screen
+				NumCreditsFont.Write(NumCreditsText(),
 					new Vector2(Resolution.TitleSafeArea.Center.X, Resolution.TitleSafeArea.Top),
 					Justify.Center,
 					0.6f, //write normal
 					Color.White,
 					ScreenManager.SpriteBatch,
 					Time);
+			}
 		}
 
 		private void DrawGameInPlayText(GameTime gameTime)
@@ -337,13 +341,13 @@ namespace InsertCoinBuddy
 					case PlayerIndex.One:
 						{
 							location = new Vector2(InsertCoinTextLocation.X,
-								InsertCoinTextLocation.Y - ((InsertCoinFont.Font.LineSpacing * size) * 0.5f));
+								InsertCoinTextLocation.Y - ((InsertCoinFont.Font.LineSpacing * size) * 2f));
 						}
 						break;
 					case PlayerIndex.Two:
 						{
 							location = new Vector2(InsertCoinTextLocation.X,
-								InsertCoinTextLocation.Y + ((InsertCoinFont.Font.LineSpacing * size) * 0.5f));
+								InsertCoinTextLocation.Y - (InsertCoinFont.Font.LineSpacing * size));
 						}
 						break;
 				}
@@ -355,7 +359,7 @@ namespace InsertCoinBuddy
 				size,
 				strText,
 				gameTime,
-				InsertCoinTextLocation,
+				location,
 				Justify.Center);
 		}
 
