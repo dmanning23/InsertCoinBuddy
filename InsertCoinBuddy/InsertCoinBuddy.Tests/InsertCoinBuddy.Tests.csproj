@@ -117,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCoinTests.cs" />
-    <Compile Include="FreePlayTests.cs" />
+    <Compile Include="GameFinishedTests.cs" />
     <Compile Include="JoinGameTests.cs" />
     <Compile Include="MenuHitStartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

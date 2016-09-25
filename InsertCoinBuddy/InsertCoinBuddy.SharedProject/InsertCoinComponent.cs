@@ -196,6 +196,11 @@ namespace InsertCoinBuddy
 			return Credits.IsPlaying(player);
 		}
 
+		public void GameFinished()
+		{
+			Credits.GameFinished();
+		}
+
 		#endregion //Methods
 	}
 }

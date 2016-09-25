@@ -5,6 +5,8 @@ namespace InsertCoinBuddy
 {
 	public interface IInsertCoinComponent
 	{
+		CreditManager Credits { get; }
+
 		/// <summary>
 		/// Gets or sets the coins per credit.
 		/// </summary>
@@ -82,5 +84,10 @@ namespace InsertCoinBuddy
 		/// <param name="player"></param>
 		/// <returns></returns>
 		bool IsPlaying(PlayerIndex player);
+
+		/// <summary>
+		/// Call this method when the game is finished playing, and returning to menus.
+		/// </summary>
+		void GameFinished();
 	}
 }

@@ -176,6 +176,14 @@ namespace InsertCoinBuddy
 			}
 		}
 
+		public CreditManager Credits
+		{
+			get
+			{
+				return this;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Init
@@ -386,6 +394,11 @@ namespace InsertCoinBuddy
 		public bool IsPlaying(PlayerIndex player)
 		{
 			return _currentPlayers[(int)player];
+		}
+
+		public void GameFinished()
+		{
+			CurrentGameState = GameState.Menu;
 		}
 
 		#endregion //Methods
