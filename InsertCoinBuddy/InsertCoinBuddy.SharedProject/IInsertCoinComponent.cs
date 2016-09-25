@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace InsertCoinBuddy
 {
-	public interface IInsertCoinComponent : IGameComponent
+	public interface IInsertCoinComponent
 	{
 		/// <summary>
 		/// Gets or sets the coins per credit.
@@ -12,9 +12,9 @@ namespace InsertCoinBuddy
 		int CoinsPerCredit { get; set; }
 
 		/// <summary>
-		/// Tell the credits manager whether or not a game is in session
+		/// Get the current state of the game.
 		/// </summary>
-		bool GameInPlay { get; set; }
+		GameState CurrentGameState { get; }
 
 		/// <summary>
 		/// Total number of coins in the system that haven't been spent
@@ -39,17 +39,26 @@ namespace InsertCoinBuddy
 		bool FreePlay { get; }
 
 		/// <summary>
+		/// Whether or not there are any credits available, or is free play we dont care about credits
+		/// </summary>
+		bool CreditAvailable { get; }
+
+		/// <summary>
 		/// Get the number of coins the player needs to enter before they will complete a credit
 		/// </summary>
 		/// <returns>The coins needed for next credit.</returns>
 		int NumCoinsNeededForNextCredit { get; }
 
 		/// <summary>
-		/// Start a game with a particular player
+		/// A coin was added to the game!
 		/// </summary>
-		/// <param name="player"></param>
-		/// <returns></returns>
-		bool StartGame(PlayerIndex player);
+		void AddCoin();
+
+		/// <summary>
+		/// One of the players has hit their "start" button
+		/// </summary>
+		/// <param name="player">The player that hit the button</param>
+		void PlayerButtonPressed(PlayerIndex player);
 
 		/// <summary>
 		/// Someone tried to join a game.
@@ -59,6 +68,13 @@ namespace InsertCoinBuddy
 		/// <param name="playSound">Soud to play if the player is able to join</param>
 		/// <returns><c>true</c> if able to join a game, <c>false</c> otherwise.</returns>
 		bool JoinGame(PlayerIndex player, bool playSound);
+
+		/// <summary>
+		/// Check whether or not a player is ready to start
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
+		bool IsReady(PlayerIndex player);
 
 		/// <summary>
 		/// Check whether or not a player is currently playing
