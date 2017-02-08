@@ -169,6 +169,8 @@ namespace InsertCoinBuddy
 					connection.InsertOrReplace(Settings);
 				}
 			}
+
+			InsertCoinComponent.CoinsPerCredit = Settings.CoinsPerCredit;
 		}
 
 		#endregion //Methods

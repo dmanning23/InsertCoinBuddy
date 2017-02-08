@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,6 +14,8 @@ namespace InsertCoinBuddy
 		private KeyboardState _prevKeys;
 
 		private GamePadState[] _prevGamePadStates;
+
+		public event EventHandler Updated;
 
 		#endregion //Fields
 
@@ -115,6 +118,7 @@ namespace InsertCoinBuddy
 			int coinsPerCredit) : base(game)
 		{
 			Credits = new CreditManager(coinSound, playerJoinSound, coinsPerCredit);
+			Credits.Updated += OnUpdated;
 			CoinKey = Keys.L;
 			CoinButton = Buttons.LeftTrigger;
 			_prevKeys = new KeyboardState();
@@ -135,6 +139,14 @@ namespace InsertCoinBuddy
 		#endregion //Init
 
 		#region Methods
+
+		private void OnUpdated(object obj, EventArgs e)
+		{
+			if (null != Updated)
+			{
+				Updated(obj, e);
+			}
+		}
 
 		/// <summary>
 		/// Called each frame, checks the keyboard input for a coin drop

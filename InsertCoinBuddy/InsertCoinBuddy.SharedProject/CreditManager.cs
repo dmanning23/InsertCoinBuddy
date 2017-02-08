@@ -39,6 +39,8 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public event EventHandler<GameStartEventArgs> OnGameStart;
 
+		public event EventHandler Updated;
+
 		#endregion //Fields
 
 		#region Properties
@@ -55,7 +57,19 @@ namespace InsertCoinBuddy
 		/// Gets or sets the coins per credit.
 		/// </summary>
 		/// <value>The coins per credit.</value>
-		public int CoinsPerCredit { get; set; }
+		private int _coinsPerCredit;
+		public int CoinsPerCredit
+	{
+			get
+			{
+				return _coinsPerCredit;
+			}
+			set
+			{
+				_coinsPerCredit = value;
+				OnUpdated(this, new EventArgs());
+			}
+		}
 
 		public bool CreditAvailable
 		{
@@ -80,7 +94,19 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// The number of coins that are currently in the system, available for use.
 		/// </summary>
-		public int TotalCoins { get; private set; }
+		private int _totalCoins;
+		public int TotalCoins
+		{
+			get
+			{
+				return _totalCoins;
+			}
+			private set
+			{
+				_totalCoins = value;
+				OnUpdated(this, new EventArgs());
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the number coins not used by a credit.
@@ -234,6 +260,14 @@ namespace InsertCoinBuddy
 			if (OnCoinAdded != null)
 			{
 				OnCoinAdded(this, new EventArgs());
+			}
+		}
+
+		public void OnUpdated(object obj, EventArgs e)
+		{
+			if (null != Updated)
+			{
+				Updated(obj, e);
 			}
 		}
 

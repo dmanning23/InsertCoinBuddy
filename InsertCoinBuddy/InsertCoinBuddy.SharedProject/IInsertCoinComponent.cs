@@ -1,11 +1,14 @@
 
 using Microsoft.Xna.Framework;
+using System;
 
 namespace InsertCoinBuddy
 {
 	public interface IInsertCoinComponent
 	{
 		CreditManager Credits { get; }
+
+		event EventHandler Updated;
 
 		/// <summary>
 		/// Gets or sets the coins per credit.

@@ -54,6 +54,8 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public FontBuddy NumCreditsFont { get; set; }
 
+		public string CreditsText { get; private set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -71,6 +73,13 @@ namespace InsertCoinBuddy
 			_insertCoinFontName = insertCoinFont;
 			_numCreditsFontName = numCreditsFont;
 			_creditsManager = insertCoin;
+			CreditsText = NumCreditsText();
+			_creditsManager.Updated += OnUpdated;
+		}
+
+		private void OnUpdated(object obj, EventArgs e)
+		{
+			CreditsText = NumCreditsText();
 		}
 
 		#endregion //Initialization
@@ -148,7 +157,7 @@ namespace InsertCoinBuddy
 			if (ShouldDisplayNumCredits())
 			{
 				//Number of credits is displayed at the bottom of the screen
-				NumCreditsFont.Write(NumCreditsText(),
+				NumCreditsFont.Write(CreditsText,
 					new Vector2(Resolution.TitleSafeArea.Center.X, Resolution.TitleSafeArea.Bottom - NumCreditsFont.Font.LineSpacing),
 					Justify.Center,
 					0.6f, //write normal
