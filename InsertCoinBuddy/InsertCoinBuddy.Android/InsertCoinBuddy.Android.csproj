@@ -40,7 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.1.0.8\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.1.0.11\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GameTimer.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -48,7 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.2\lib\MonoAndroid10\HadoukInput.Android.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.4\lib\MonoAndroid10\HadoukInput.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -56,11 +56,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MatrixExtensions.1.0.1\lib\MonoAndroid10\MatrixExtensions.Android.dll</HintPath>
+      <HintPath>..\packages\MatrixExtensions.1.0.2\lib\MonoAndroid10\MatrixExtensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MenuBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MenuBuddy.1.0.33\lib\MonoAndroid10\MenuBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\MenuBuddy.1.0.58\lib\MonoAndroid10\MenuBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
@@ -74,15 +74,15 @@
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="PrimitiveBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PrimitiveBuddy.1.0.0\lib\MonoAndroid10\PrimitiveBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\PrimitiveBuddy.1.0.2\lib\MonoAndroid10\PrimitiveBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RandomExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RandomExtensions.dmanning23.1.0.2\lib\MonoAndroid10\RandomExtensions.Android.dll</HintPath>
+      <HintPath>..\packages\RandomExtensions.dmanning23.1.0.3\lib\MonoAndroid10\RandomExtensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ResolutionBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ResolutionBuddy.1.0.2\lib\MonoAndroid10\ResolutionBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\ResolutionBuddy.1.0.4\lib\MonoAndroid10\ResolutionBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -94,11 +94,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLiteConnectionBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.1\lib\MonoAndroid10\SQLiteConnectionBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.6\lib\MonoAndroid10\SQLiteConnectionBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.1.0.0\lib\MonoAndroid10\StateMachineBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.1\lib\MonoAndroid10\StateMachineBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -110,11 +110,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.1.0.1\lib\MonoAndroid10\Vector2Extensions.Android.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.6\lib\MonoAndroid10\Vector2Extensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XmlBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.1.0.6\lib\MonoAndroid10\XmlBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\XmlBuddy.1.0.13\lib\MonoAndroid10\XmlBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
