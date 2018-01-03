@@ -23,6 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertCoinBuddy.WindowsUniv
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		InsertCoinBuddy.SharedProject\InsertCoinBuddy.SharedProject.projitems*{0462c6a2-2efc-4f2b-a1e1-743a47fd71e2}*SharedItemsImports = 4
 		InsertCoinBuddy.SharedProject\InsertCoinBuddy.SharedProject.projitems*{1ac47bfb-72be-4390-b940-53fd57492599}*SharedItemsImports = 13
 		InsertCoinBuddy.SharedProject\InsertCoinBuddy.SharedProject.projitems*{1ee34288-db34-43e6-8717-e9e8f14207f0}*SharedItemsImports = 4
 		InsertCoinBuddy.SharedProject\InsertCoinBuddy.SharedProject.projitems*{83f37404-9cfc-483f-937e-4ff794918d13}*SharedItemsImports = 4
