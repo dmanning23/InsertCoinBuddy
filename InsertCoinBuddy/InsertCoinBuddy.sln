@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertCoinBuddy.Android", "InsertCoinBuddy.Android\InsertCoinBuddy.Android.csproj", "{83F37404-9CFC-483F-937E-4FF794918D13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertCoinBuddy.DesktopGL", "InsertCoinBuddy.DesktopGL\InsertCoinBuddy.DesktopGL.csproj", "{1EE34288-DB34-43E6-8717-E9E8F14207F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertCoinBuddy.WindowsDX", "InsertCoinBuddy.WindowsDX\InsertCoinBuddy.WindowsDX.csproj", "{1EE34288-DB34-43E6-8717-E9E8F14207F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertCoinBuddy.iOS", "InsertCoinBuddy.iOS\InsertCoinBuddy.iOS.csproj", "{FB0B21CE-7125-4562-9EAD-F700A4494853}"
 EndProject
@@ -123,5 +123,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {717AA4F8-B62D-4E30-BE6C-26F0D9B75257}
 	EndGlobalSection
 EndGlobal

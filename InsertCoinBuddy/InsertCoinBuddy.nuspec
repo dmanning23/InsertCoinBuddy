@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>InsertCoinBuddy</id>
-		<version>1.0.33</version>
+		<version>1.0.34</version>
 		<title>InsertCoinBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -80,7 +80,7 @@
 			</group>
 
 			<group targetFramework="net451">
-				<dependency id="MonoGame.Framework.DesktopGL" version="3.5"/>
+				<dependency id="MonoGame.Framework.WindowsDX" version="3.5"/>
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="FontBuddy" version="1.0.8"/>
 				<dependency id="GameTimer" version="1.0"/>
@@ -102,8 +102,6 @@
 		</dependencies>
 	</metadata>
 	<files>
-		
-		<file src="..\Content\Settings.db" target="content\Settings.db" />
 
 		<!--Xamarin.Android-->
 		<file src="InsertCoinBuddy.Android\bin\Release\InsertCoinBuddy.Android.pdb" target="lib\MonoAndroid10\InsertCoinBuddy.Android.pdb" />
@@ -117,9 +115,9 @@
 		<file src="InsertCoinBuddy.WindowsUniversal\bin\Release\InsertCoinBuddy.WindowsUniversal.pdb" target="lib\uap10.0\InsertCoinBuddy.WindowsUniversal.pdb" />
 		<file src="InsertCoinBuddy.WindowsUniversal\bin\Release\InsertCoinBuddy.WindowsUniversal.dll" target="lib\uap10.0\InsertCoinBuddy.WindowsUniversal.dll" />
 
-		<!--DesktopGL-->
-		<file src="InsertCoinBuddy.DesktopGL\bin\Release\InsertCoinBuddy.DesktopGL.pdb" target="lib\net451\InsertCoinBuddy.DesktopGL.pdb" />
-		<file src="InsertCoinBuddy.DesktopGL\bin\Release\InsertCoinBuddy.DesktopGL.dll" target="lib\net451\InsertCoinBuddy.DesktopGL.dll" />
+		<!--WindowsDX-->
+		<file src="InsertCoinBuddy.WindowsDX\bin\Release\InsertCoinBuddy.WindowsDX.pdb" target="lib\net451\InsertCoinBuddy.WindowsDX.pdb" />
+		<file src="InsertCoinBuddy.WindowsDX\bin\Release\InsertCoinBuddy.WindowsDX.dll" target="lib\net451\InsertCoinBuddy.WindowsDX.dll" />
 
 	</files>
 </package>

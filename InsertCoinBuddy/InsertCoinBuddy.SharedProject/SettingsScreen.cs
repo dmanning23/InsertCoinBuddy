@@ -56,29 +56,29 @@ namespace InsertCoinBuddy
 			base.LoadContent();
 
 			//Create our menu entries.
-			_difficulty = new MenuEntryInt("Difficulty", Settings.Settings.Difficulty)
+			_difficulty = new MenuEntryInt("Difficulty", Settings.Settings.Difficulty, Content)
 			{
 				Step = 1,
 				Min = 1,
 				Max = 10,
 			};
 
-			_numCredits = new MenuEntryInt("Credits Per Play", Settings.Settings.CoinsPerCredit)
+			_numCredits = new MenuEntryInt("Credits Per Play", Settings.Settings.CoinsPerCredit, Content)
 			{
 				Step = 1,
 				Min = 0,
 				Max = 20,
 			};
 
-			_attractModeSound = new MenuEntryBool("Attract Mode Sound", Settings.Settings.AttractModeSound)
+			_attractModeSound = new MenuEntryBool("Attract Mode Sound", Settings.Settings.AttractModeSound, Content)
 			{
 			};
 			
-			_attractModeMusic = new MenuEntryBool("Attract Mode Music", Settings.Settings.AttractModeMusic)
+			_attractModeMusic = new MenuEntryBool("Attract Mode Music", Settings.Settings.AttractModeMusic, Content)
 			{
 			};
 
-			_doneMenuEntry = new MenuEntry("Done")
+			_doneMenuEntry = new MenuEntry("Done", Content)
 			{
 			};
 
