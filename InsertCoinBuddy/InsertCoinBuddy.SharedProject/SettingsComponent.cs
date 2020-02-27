@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SQLiteConnectionBuddy;
 using System;
-using System.Linq;
 
 namespace InsertCoinBuddy
 {
@@ -39,9 +38,9 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// the button to press to bring up the menu screen
 		/// </summary>
-		protected Buttons MenuButton { get; set; }
+		protected Buttons? MenuButton { get; set; }
 
-		private IInsertCoinComponent InsertCoinComponent { get; set; }
+		private IInsertCoinService InsertCoinService { get; set; }
 
 		#endregion //Properties
 
@@ -55,7 +54,7 @@ namespace InsertCoinBuddy
 		/// <param name="menuButton">the controller button to bring up the settings screen</param>
 		public SettingsComponent(Game game, 
 			Keys menuKey = Keys.K,
-			Buttons menuButton = Buttons.Back)
+			Buttons? menuButton = null)
 			: base(game)
 		{
 			MenuKey = menuKey;
@@ -70,8 +69,8 @@ namespace InsertCoinBuddy
 		/// </summary>
 		public override void Initialize()
 		{
-			InsertCoinComponent = Game.Services.GetService<IInsertCoinComponent>();
-			if (null == InsertCoinComponent)
+			InsertCoinService = Game.Services.GetService<IInsertCoinService>();
+			if (null == InsertCoinService)
 			{
 				throw new Exception("Tried to initialize SettingsComponent, but InsertCoinComponent was missing");
 			}
@@ -111,8 +110,22 @@ namespace InsertCoinBuddy
 		/// <returns></returns>
 		private bool ScreenRequest()
 		{
-			return (Keyboard.GetState().IsKeyDown(MenuKey) ||
-				GamePad.GetState(PlayerIndex.One).IsButtonDown(MenuButton));
+			//check if the keyboard button was pressed
+			if (Keyboard.GetState().IsKeyDown(MenuKey))
+			{
+				return true;
+			}
+
+			//Check if the controller button was pressed
+			if (MenuButton.HasValue)
+			{
+				if (GamePad.GetState(0).IsButtonDown(MenuButton.Value))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		/// <summary>
@@ -154,7 +167,7 @@ namespace InsertCoinBuddy
 			}
 
 			//set the num coins per credit
-			InsertCoinComponent.CoinsPerCredit = Settings.CoinsPerCredit;
+			InsertCoinService.CoinsPerCredit = Settings.CoinsPerCredit;
 		}
 
 		public void SaveSettings()
@@ -170,7 +183,7 @@ namespace InsertCoinBuddy
 				}
 			}
 
-			InsertCoinComponent.CoinsPerCredit = Settings.CoinsPerCredit;
+			InsertCoinService.CoinsPerCredit = Settings.CoinsPerCredit;
 		}
 
 		#endregion //Methods

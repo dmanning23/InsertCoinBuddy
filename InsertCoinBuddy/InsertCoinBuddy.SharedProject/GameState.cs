@@ -5,7 +5,7 @@ namespace InsertCoinBuddy
 	/// This is the current state of the game.
 	/// </summary>
 	public enum GameState
-    {
+	{
 		/// <summary>
 		/// The game hasn't started yet, we are waiting for players.
 		/// </summary>
@@ -21,5 +21,5 @@ namespace InsertCoinBuddy
 		/// The game is being played.
 		/// </summary>
 		Playing
-    }
+	}
 }

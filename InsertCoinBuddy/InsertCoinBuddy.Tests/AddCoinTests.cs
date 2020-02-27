@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace InsertCoinBuddy.Tests
 {
 	[TestFixture]
 	public class AddCoinTests
 	{
-		IInsertCoinComponent credits;
+		IInsertCoinService credits;
 
 		[SetUp]
 		public void Setup()
 		{
-			credits = new CreditManager("", "", 2);
+			credits = new InsertCoinService(2, 2);
 		}
 
 		[Test]
@@ -49,129 +44,129 @@ namespace InsertCoinBuddy.Tests
 		{
 			credits.CoinsPerCredit = 0;
 
-			Assert.AreEqual(0, credits.TotalCoins);
-			Assert.AreEqual(0, credits.NumCredits);
-			Assert.AreEqual(0, credits.NumCoins);
-			Assert.AreEqual(0, credits.NumCoinsNeededForNextCredit);
-			Assert.IsTrue(credits.CreditAvailable);
+			Assert.AreEqual(0, credits.Players[0].TotalCoins);
+			Assert.AreEqual(0, credits.Players[0].NumCredits);
+			Assert.AreEqual(0, credits.Players[0].NumCoins);
+			Assert.AreEqual(0, credits.Players[0].NumCoinsNeededForNextCredit);
+			Assert.IsTrue(credits.Players[0].CreditAvailable);
 		}
 
 		[Test]
 		public void default_TotalCoins()
 		{
-			Assert.AreEqual(0, credits.TotalCoins);
+			Assert.AreEqual(0, credits.Players[0].TotalCoins);
 		}
 
 		[Test]
 		public void default_NumCredits()
 		{
-			Assert.AreEqual(0, credits.NumCredits);
+			Assert.AreEqual(0, credits.Players[0].NumCredits);
 		}
 
 		[Test]
 		public void default_NumCoins()
 		{
-			Assert.AreEqual(0, credits.NumCoins);
+			Assert.AreEqual(0, credits.Players[0].NumCoins);
 		}
 
 		[Test]
 		public void default_NumCoinsNeededForNextCredit()
 		{
-			Assert.AreEqual(2, credits.NumCoinsNeededForNextCredit);
+			Assert.AreEqual(2, credits.Players[0].NumCoinsNeededForNextCredit);
 		}
 
 		[Test]
 		public void addOneCoin()
 		{
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(1, credits.TotalCoins);
-			Assert.AreEqual(0, credits.NumCredits);
-			Assert.AreEqual(1, credits.NumCoins);
-			Assert.AreEqual(1, credits.NumCoinsNeededForNextCredit);
-			Assert.IsFalse(credits.CreditAvailable);
+			Assert.AreEqual(1, credits.Players[0].TotalCoins);
+			Assert.AreEqual(0, credits.Players[0].NumCredits);
+			Assert.AreEqual(1, credits.Players[0].NumCoins);
+			Assert.AreEqual(1, credits.Players[0].NumCoinsNeededForNextCredit);
+			Assert.IsFalse(credits.Players[0].CreditAvailable);
 		}
 
 		[Test]
 		public void addTwoCoins()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(2, credits.TotalCoins);
-			Assert.AreEqual(1, credits.NumCredits);
-			Assert.AreEqual(0, credits.NumCoins);
-			Assert.AreEqual(2, credits.NumCoinsNeededForNextCredit);
-			Assert.IsTrue(credits.CreditAvailable);
+			Assert.AreEqual(2, credits.Players[0].TotalCoins);
+			Assert.AreEqual(1, credits.Players[0].NumCredits);
+			Assert.AreEqual(0, credits.Players[0].NumCoins);
+			Assert.AreEqual(2, credits.Players[0].NumCoinsNeededForNextCredit);
+			Assert.IsTrue(credits.Players[0].CreditAvailable);
 		}
 
 		[Test]
 		public void addThreeCoins()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(3, credits.TotalCoins);
-			Assert.AreEqual(1, credits.NumCredits);
-			Assert.AreEqual(1, credits.NumCoins);
-			Assert.AreEqual(1, credits.NumCoinsNeededForNextCredit);
-			Assert.IsTrue(credits.CreditAvailable);
+			Assert.AreEqual(3, credits.Players[0].TotalCoins);
+			Assert.AreEqual(1, credits.Players[0].NumCredits);
+			Assert.AreEqual(1, credits.Players[0].NumCoins);
+			Assert.AreEqual(1, credits.Players[0].NumCoinsNeededForNextCredit);
+			Assert.IsTrue(credits.Players[0].CreditAvailable);
 		}
 
 		[Test]
 		public void addFourCoins_TotalCoins()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(4, credits.TotalCoins);
+			Assert.AreEqual(4, credits.Players[0].TotalCoins);
 		}
 
 		[Test]
 		public void addFourCoins_NumCredits()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(2, credits.NumCredits);
+			Assert.AreEqual(2, credits.Players[0].NumCredits);
 		}
 
 		[Test]
 		public void addFourCoins_NumCoins()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(0, credits.NumCoins);
+			Assert.AreEqual(0, credits.Players[1].NumCoins);
 		}
 
 		[Test]
 		public void addFourCoins_NumCoinsNeededForNextCredit()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(2, credits.NumCoinsNeededForNextCredit);
+			Assert.AreEqual(2, credits.Players[1].NumCoinsNeededForNextCredit);
 		}
 
 		[Test]
 		public void addFourCoins_CreditAvailable()
 		{
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.IsTrue(credits.CreditAvailable);
+			Assert.IsTrue(credits.Players[0].CreditAvailable);
 		}
 
 		[Test]
@@ -179,16 +174,16 @@ namespace InsertCoinBuddy.Tests
 		{
 			credits.CoinsPerCredit = 3;
 
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
-			credits.AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
+			credits.Players[0].AddCoin();
 
-			Assert.AreEqual(4, credits.TotalCoins);
-			Assert.AreEqual(1, credits.NumCredits);
-			Assert.AreEqual(1, credits.NumCoins);
-			Assert.AreEqual(2, credits.NumCoinsNeededForNextCredit);
-			Assert.IsTrue(credits.CreditAvailable);
+			Assert.AreEqual(4, credits.Players[0].TotalCoins);
+			Assert.AreEqual(1, credits.Players[0].NumCredits);
+			Assert.AreEqual(1, credits.Players[0].NumCoins);
+			Assert.AreEqual(2, credits.Players[0].NumCoinsNeededForNextCredit);
+			Assert.IsTrue(credits.Players[0].CreditAvailable);
 		}
 	}
 }

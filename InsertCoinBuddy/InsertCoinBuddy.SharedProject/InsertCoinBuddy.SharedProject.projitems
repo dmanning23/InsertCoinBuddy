@@ -9,13 +9,15 @@
     <Import_RootNamespace>InsertCoinBuddy.SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CreditManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CoinEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InsertCoinService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStartEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IInsertCoinComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IInsertCoinService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InsertCoinComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InsertCoinScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISettingsComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerCredits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsScreen.cs" />

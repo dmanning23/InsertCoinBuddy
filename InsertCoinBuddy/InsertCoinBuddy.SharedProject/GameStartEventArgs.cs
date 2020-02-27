@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InsertCoinBuddy
 {
@@ -6,32 +7,12 @@ namespace InsertCoinBuddy
 	/// Event arguments that get fired off when a game is started
 	/// </summary>
 	public class GameStartEventArgs : EventArgs
-    {
-		#region Fields
+	{
+		public List<bool> CurrentPlayers { get; set; }
 
-		private bool[] _currentPlayers = new bool[] { false, false, false, false };
-
-		#endregion //Fields
-
-		#region Properties
-
-		public bool[] CurrentPlayers
+		public GameStartEventArgs(List<bool> currentPlayers)
 		{
-			get
-			{
-				return _currentPlayers;
-			}
+			CurrentPlayers = currentPlayers;
 		}
-
-		#endregion //Properties
-
-		#region Method
-
-		public GameStartEventArgs(bool[] currentPlayers)
-		{
-			_currentPlayers = currentPlayers;
-		}
-
-		#endregion //Method
 	}
 }

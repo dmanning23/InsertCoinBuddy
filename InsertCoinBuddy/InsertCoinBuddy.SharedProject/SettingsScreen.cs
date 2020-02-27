@@ -1,6 +1,7 @@
 using InputHelper;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
+using System.Threading.Tasks;
 
 namespace InsertCoinBuddy
 {
@@ -51,9 +52,9 @@ namespace InsertCoinBuddy
 			CoveredByOtherScreens = false;
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			//Create our menu entries.
 			_difficulty = new MenuEntryInt("Difficulty", Settings.Settings.Difficulty, Content)
