@@ -43,7 +43,7 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// thing for writing "NumCredits" text
 		/// </summary>
-		private FontBuddy NumCreditsFont { get; set; }
+		private IFontBuddy NumCreditsFont { get; set; }
 
 		/// <summary>
 		/// location of the "Insert Coin" text
@@ -100,10 +100,17 @@ namespace InsertCoinBuddy
 				ShadowSize = 1f,
 			};
 			InsertCoinFont.PulsateSize = 0.25f;
-			InsertCoinFont.LoadContent(Content, InsertCoinFontName);
+			InsertCoinFont.LoadContent(Content, InsertCoinFontName, StyleSheet.UseFontPlus, StyleSheet.SmallFontSize);
 
-			NumCreditsFont = new FontBuddy();
-			NumCreditsFont.LoadContent(Content, NumCreditsFontName);
+			if (StyleSheet.UseFontPlus)
+			{
+				NumCreditsFont = new FontBuddyPlus();
+			}
+			else
+			{
+				NumCreditsFont = new FontBuddy();
+			}
+			NumCreditsFont.LoadContent(Content, NumCreditsFontName, StyleSheet.UseFontPlus, StyleSheet.SmallFontSize);
 
 			//initialize some default locations for text
 
