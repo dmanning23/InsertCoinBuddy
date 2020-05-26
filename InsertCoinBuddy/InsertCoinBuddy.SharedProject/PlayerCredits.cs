@@ -140,7 +140,11 @@ namespace InsertCoinBuddy
 			//check the keyboard for coins
 			if (Mappings.UseKeyboard[PlayerIndex])
 			{
-				if (curKeys.IsKeyDown(Mappings.KeyMaps[PlayerIndex].Start) && prevKeys.IsKeyUp(Mappings.KeyMaps[PlayerIndex].Start))
+				if (CheckKey(prevKeys, curKeys, Mappings.KeyMaps[PlayerIndex].Start) ||
+					CheckKey(prevKeys, curKeys, Mappings.KeyMaps[PlayerIndex].A) ||
+					CheckKey(prevKeys, curKeys, Mappings.KeyMaps[PlayerIndex].X) ||
+					CheckKey(prevKeys, curKeys, Mappings.KeyMaps[PlayerIndex].Y) ||
+					CheckKey(prevKeys, curKeys, Mappings.KeyMaps[PlayerIndex].B))
 				{
 					return CreditAvailable;
 				}
@@ -156,6 +160,10 @@ namespace InsertCoinBuddy
 			return false;
 		}
 
+		private bool CheckKey(KeyboardState prevKeys, KeyboardState curKeys, Keys key)
+		{
+			return curKeys.IsKeyDown(key) && prevKeys.IsKeyUp(key);
+		}
 
 		/// <summary>
 		/// Someone tried to join a game.

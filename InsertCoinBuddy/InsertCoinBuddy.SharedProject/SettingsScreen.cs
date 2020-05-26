@@ -10,7 +10,7 @@ namespace InsertCoinBuddy
 	/// screen, and gives the user a chance to configure the game in various hopefully useful ways.
 	/// If you'd like to add more options to this screen, inherit from it and use SettingsComponent<YourScreen>()
 	/// </summary>
-	public class SettingsScreen : MenuScreen
+	public class SettingsScreen : MenuStackScreen
 	{
 		#region Fields
 

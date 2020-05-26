@@ -62,16 +62,6 @@ namespace InsertCoinBuddy
 							}
 						}
 						break;
-					case GameState.Playing:
-						{
-							//if the game is in session, move the "ready" players to "playing"
-							foreach (var player in Players)
-							{
-								player.Current = player.Ready || player.Current;
-								player.Ready = false;
-							}
-						}
-						break;
 				}
 			}
 		}
@@ -230,16 +220,18 @@ namespace InsertCoinBuddy
 			for (var i = 0; i < Players.Count; i++)
 			{
 				//subtract a credit from the player
-				if (Players[i].SubtractCredit())
+				if (Players[i].Ready && Players[i].SubtractCredit())
 				{
 					//set the player to "playing"
 					Players[i].Current = true;
 				}
+
+				Players[i].Ready = false;
 			}
 
 			if (null != OnGameStart)
 			{
-				OnGameStart(this, new GameStartEventArgs(Players.Select(x => x.Ready).ToList()));
+				OnGameStart(this, new GameStartEventArgs(Players.Select(x => x.Current).ToList()));
 			}
 		}
 
