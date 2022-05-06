@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CoinEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InsertCoinCocktailTableScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InsertCoinService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStartEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameState.cs" />
