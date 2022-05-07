@@ -54,10 +54,10 @@
       <HintPath>..\packages\FilenameBuddy.2.0.14\lib\MonoAndroid10\FilenameBuddy.Android.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.2.0.27\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.2.0.30\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
     </Reference>
-    <Reference Include="FontStashSharp.MonoGame, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.4\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    <Reference Include="FontStashSharp.MonoGame, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.7\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GameTimer.2.3.0\lib\MonoAndroid10\GameTimer.Android.dll</HintPath>
@@ -68,6 +68,7 @@
     <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.2.0.15\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Java.Interop" />
     <Reference Include="MatrixExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MatrixExtensions.2.0.1\lib\MonoAndroid10\MatrixExtensions.Android.dll</HintPath>
     </Reference>
@@ -98,40 +99,48 @@
     <Reference Include="SpriteFontPlus, Version=0.7.0.22, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpriteFontPlus.MonoGame.0.7.0.22\lib\netstandard2.0\SpriteFontPlus.dll</HintPath>
     </Reference>
-    <Reference Include="SQLite-net, Version=1.6.292.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\sqlite-net-pcl.1.6.292\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
     </Reference>
     <Reference Include="SQLiteConnectionBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.23\lib\MonoAndroid10\SQLiteConnectionBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.25\lib\MonoAndroid10\SQLiteConnectionBuddy.Android.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.1.14.520, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.14\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.7\lib\netstandard2.0\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.1.14.520, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.14\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.7\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core, Version=1.1.14.520, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.14\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.lib.e_sqlite3.android, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=e4ad490600e2234c, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.android.2.0.7\lib\monoandroid80\SQLitePCLRaw.lib.e_sqlite3.android.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.lib.e_sqlite3, Version=1.1.14.520, Culture=neutral, PublicKeyToken=e4ad490600e2234c, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.14\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.1.14.520, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.14\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.2.0.7\lib\netstandard2.0\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StateMachineBuddy.2.0.21\lib\MonoAndroid10\StateMachineBuddy.Android.dll</HintPath>
     </Reference>
-    <Reference Include="StbImageSharp, Version=2.22.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbImageSharp.2.22.6\lib\netstandard2.0\StbImageSharp.dll</HintPath>
+    <Reference Include="StbImageSharp, Version=2.27.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbImageSharp.2.27.8\lib\netstandard2.0\StbImageSharp.dll</HintPath>
     </Reference>
     <Reference Include="StbTrueTypeSharp, Version=1.26.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StbTrueTypeSharp.1.26.9\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="TouchScreenBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -188,7 +197,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MonoGame.Framework.Android.3.7.1.189\build\MonoGame.Framework.Android.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.Android.3.7.1.189\build\MonoGame.Framework.Android.targets'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

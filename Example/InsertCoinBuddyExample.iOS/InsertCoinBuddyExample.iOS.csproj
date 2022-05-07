@@ -111,10 +111,10 @@
       <HintPath>..\packages\FilenameBuddy.2.0.14\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.2.0.27\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.2.0.30\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="FontStashSharp.MonoGame, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.4\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
+    <Reference Include="FontStashSharp.MonoGame, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontStashSharp.MonoGame.1.0.7\lib\netstandard2.0\FontStashSharp.MonoGame.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GameTimer.2.3.0\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
@@ -152,36 +152,42 @@
     <Reference Include="SpriteFontPlus, Version=0.7.0.22, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpriteFontPlus.MonoGame.0.7.0.22\lib\netstandard2.0\SpriteFontPlus.dll</HintPath>
     </Reference>
-    <Reference Include="SQLite-net, Version=1.6.292.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\sqlite-net-pcl.1.6.292\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
     </Reference>
     <Reference Include="SQLiteConnectionBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.23\lib\Xamarin.iOS10\SQLiteConnectionBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\SQLiteConnectionBuddy.1.0.25\lib\Xamarin.iOS10\SQLiteConnectionBuddy.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.1.14.520, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.14\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.7\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.1.14.520, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.14\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.7\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core, Version=1.1.14.520, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.14\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.sqlite3, Version=1.1.14.520, Culture=neutral, PublicKeyToken=62684c7b4f184e3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.14\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3, Version=2.0.7.1395, Culture=neutral, PublicKeyToken=62684c7b4f184e3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.2.0.7\lib\netstandard2.0\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StateMachineBuddy.2.0.21\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="StbImageSharp, Version=2.22.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbImageSharp.2.22.6\lib\netstandard2.0\StbImageSharp.dll</HintPath>
+    <Reference Include="StbImageSharp, Version=2.27.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StbImageSharp.2.27.8\lib\netstandard2.0\StbImageSharp.dll</HintPath>
     </Reference>
     <Reference Include="StbTrueTypeSharp, Version=1.26.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StbTrueTypeSharp.1.26.9\lib\netstandard2.0\StbTrueTypeSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="TouchScreenBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -225,5 +231,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MonoGame.Framework.iOS.3.7.1.189\build\MonoGame.Framework.iOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.iOS.3.7.1.189\build\MonoGame.Framework.iOS.targets'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

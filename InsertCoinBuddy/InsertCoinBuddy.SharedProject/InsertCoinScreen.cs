@@ -1,9 +1,7 @@
 using FontBuddyLib;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using ResolutionBuddy;
-using System;
 using System.Threading.Tasks;
 
 namespace InsertCoinBuddy
@@ -16,49 +14,14 @@ namespace InsertCoinBuddy
 	/// At the bottom of the screen, displays the number of credits
 	/// Credits: [NumCredits] [NumCoins]/[CoinsPerCredit]
 	/// </summary>
-	public class InsertCoinScreen : Screen
+	public class InsertCoinScreen : BaseInsertCoinScreen
 	{
-		#region Properties
-
-		/// <summary>
-		/// The thing that actually manages the number of credits for this screen.
-		/// </summary>
-		public IInsertCoinService Service;
-
-		/// <summary>
-		/// name of the font resource to use to write "Insert Coin"
-		/// </summary>
-		public string InsertCoinFontName { get; set; }
-
-		/// <summary>
-		/// name of the font resource to use to write "Credits: x/X"
-		/// </summary>
-		public string NumCreditsFontName { get; set; }
-
-		/// <summary>
-		/// thing for writing "Insert Coin" text
-		/// </summary>
-		private PulsateBuddy InsertCoinFont { get; set; }
-
-		/// <summary>
-		/// thing for writing "NumCredits" text
-		/// </summary>
-		private IFontBuddy NumCreditsFont { get; set; }
+		#region Propertie
 
 		/// <summary>
 		/// location of the "Insert Coin" text
 		/// </summary>
 		private float InsertCoinTextLocation { get; set; }
-
-		private float LineSpacing { get; set; }
-
-		public string CoinSoundName { get; set; }
-
-		public string PlayerJoinSoundName { get; set; }
-
-		private SoundEffect CoinSound { get; set; }
-
-		private SoundEffect PlayerJoinSound { get; set; }
 
 		#endregion //Properties
 
@@ -67,33 +30,21 @@ namespace InsertCoinBuddy
 		/// <summary>
 		/// Constructor fills in the menu contents.
 		/// </summary>
-		public InsertCoinScreen(string insertCoinFont, string numCreditsFont, string coinSound, string playerJoinSound)
+		public InsertCoinScreen(string insertCoinFont, string numCreditsFont, string coinSound, string playerJoinSound) : 
+			base(insertCoinFont, numCreditsFont, coinSound, playerJoinSound)
 		{
-			CoveredByOtherScreens = false;
-			CoverOtherScreens = false;
-
-			InsertCoinFontName = insertCoinFont;
-			NumCreditsFontName = numCreditsFont;
-			CoinSoundName = coinSound;
-			PlayerJoinSoundName = playerJoinSound;
 		}
 
-		/// <summary>
-		/// Load graphics content for the screen.
-		/// </summary>
 		public override async Task LoadContent()
 		{
 			await base.LoadContent();
 
-			Service = ScreenManager.Game.Services.GetService<IInsertCoinService>();
-			if (null == Service)
-			{
-				throw new ArgumentNullException("_service");
-			}
-			Service.OnCoinAdded += OnCoinDropped;
-			Service.OnPlayerJoined += OnPlayerJoined;
+			//Insert coin stuff is displayed right above that
+			InsertCoinTextLocation = Resolution.TitleSafeArea.Bottom - (2.0f * LineSpacing);
+		}
 
-			//load teh fonts
+		protected override void LoadFonts()
+		{
 			InsertCoinFont = new PulsateBuddy()
 			{
 				ShadowOffset = Vector2.Zero,
@@ -111,65 +62,9 @@ namespace InsertCoinBuddy
 				NumCreditsFont = new FontBuddy();
 			}
 			NumCreditsFont.LoadContent(Content, NumCreditsFontName, StyleSheet.UseFontPlus, StyleSheet.SmallFontSize);
-
-			//initialize some default locations for text
-
-			//Insert coin stuff is displayed right above that
-			LineSpacing = InsertCoinFont.MeasureString("Insert Coin").Y;
-			InsertCoinTextLocation = Resolution.TitleSafeArea.Bottom - (2.0f * LineSpacing);
-
-			if (!string.IsNullOrEmpty(CoinSoundName))
-			{
-				CoinSound = Content.Load<SoundEffect>(CoinSoundName);
-			}
-
-			if (!string.IsNullOrEmpty(PlayerJoinSoundName))
-			{
-				PlayerJoinSound = Content.Load<SoundEffect>(PlayerJoinSoundName);
-			}
 		}
 
-		private void OnCoinDropped(object sender, CoinEventArgs e)
-		{
-			CoinSound?.Play();
-		}
-
-		private void OnPlayerJoined(object sender, CoinEventArgs e)
-		{
-			PlayerJoinSound?.Play();
-		}
-
-		public override void Draw(GameTime gameTime)
-		{
-			base.Draw(gameTime);
-
-			ScreenManager.SpriteBatchBegin();
-
-			switch (Service.CurrentGameState)
-			{
-				case GameState.Menu:
-					{
-						DrawMenuText(gameTime);
-					}
-					break;
-
-				case GameState.Ready:
-					{
-						DrawReadyText(gameTime);
-					}
-					break;
-
-				case GameState.Playing:
-					{
-						DrawPlayingText(gameTime);
-					}
-					break;
-			}
-
-			ScreenManager.SpriteBatchEnd();
-		}
-
-		private void DrawMenuText(GameTime gameTime)
+		protected override void DrawMenuText()
 		{
 			for (int i = 0; i < Service.Players.Count; i++)
 			{
@@ -177,38 +72,11 @@ namespace InsertCoinBuddy
 
 				//Get the location to draw the player's text
 				var location = new Vector2((i + 1) * (Resolution.ScreenArea.Width / (Service.Players.Count + 1)), InsertCoinTextLocation);
-				WritePlayerMenuText(player, location, gameTime);
+				WritePlayerMenuText(player, location);
 			}
 		}
 
-		private void WritePlayerMenuText(PlayerCredits player, Vector2 location, GameTime gameTime)
-		{
-			//Draw instructions for the players
-			if (player.CreditAvailable)
-			{
-				WriteInsertCoinText(player, location, 6.0f, 1.2f, "Press Start!", gameTime);
-			}
-			else
-			{
-				//draw in slowly pulsating white letters
-				WriteInsertCoinText(player, location, 3.0f, 1.0f, InsertCoinText(player), gameTime);
-			}
-
-			//Draw the number of credits text!
-			if (ShouldDisplayNumCredits(player))
-			{
-				//Number of credits is displayed at the bottom of the screen
-				NumCreditsFont.Write(NumCreditsText(player),
-					new Vector2(location.X, location.Y + LineSpacing),
-					Justify.Center,
-					0.6f, //write normal
-					Color.White,
-					ScreenManager.SpriteBatch,
-					Time);
-			}
-		}
-
-		private void DrawReadyText(GameTime gameTime)
+		protected override void DrawReadyText()
 		{
 			for (int i = 0; i < Service.Players.Count; i++)
 			{
@@ -220,11 +88,11 @@ namespace InsertCoinBuddy
 				//Draw instructions for the players
 				if (!player.Ready)
 				{
-					WritePlayerMenuText(player, location, gameTime);
+					WritePlayerMenuText(player, location);
 				}
 				else
 				{
-					WriteInsertCoinText(player, location, 6.0f, 1.2f, "Ready!", gameTime);
+					WriteInsertCoinText(location, 6.0f, 1.2f, "Ready!");
 
 					//Draw the number of credits text!
 					if (ShouldDisplayNumCredits(player))
@@ -242,7 +110,7 @@ namespace InsertCoinBuddy
 			}
 		}
 
-		private void DrawPlayingText(GameTime gameTime)
+		protected override void DrawPlayingText()
 		{
 			for (int i = 0; i < Service.Players.Count; i++)
 			{
@@ -256,12 +124,12 @@ namespace InsertCoinBuddy
 				{
 					if (player.CreditAvailable)
 					{
-						WriteInsertCoinText(player, location, 2.0f, 0.5f, "Press Start!", gameTime);
+						WriteInsertCoinText(location, 2.0f, 0.5f, "Press Start!");
 						location = new Vector2(location.X, location.Y + LineSpacing);
 					}
 					else
 					{
-						WriteInsertCoinText(player, location, 2.0f, 0.5f, InsertCoinText(player), gameTime);
+						WriteInsertCoinText(location, 2.0f, 0.5f, InsertCoinText(player));
 						location = new Vector2(location.X, location.Y + LineSpacing);
 					}
 				}
@@ -281,74 +149,34 @@ namespace InsertCoinBuddy
 			}
 		}
 
-		/// <summary>
-		/// Check if the screen should write the number of credits available
-		/// </summary>
-		/// <returns><c>true</c>, if display number credits was shoulded, <c>false</c> otherwise.</returns>
-		public bool ShouldDisplayNumCredits(PlayerCredits player)
+		private void WritePlayerMenuText(PlayerCredits player, Vector2 location)
 		{
-			if (GameState.Playing != Service.CurrentGameState)
+			//Draw instructions for the players
+			if (player.CreditAvailable)
 			{
-				//always display the number of credits if the game is not in play
-				return true;
+				WriteInsertCoinText(location, 6.0f, 1.2f, "Press Start!");
 			}
 			else
 			{
-				//If the game is in play, only display credits if there are any coins in the system
-				return (Service.FreePlay || (player.TotalCoins >= 1));
+				//draw in slowly pulsating white letters
+				WriteInsertCoinText(location, 3.0f, 1.0f, InsertCoinText(player));
+			}
+
+			//Draw the number of credits text!
+			if (ShouldDisplayNumCredits(player))
+			{
+				//Number of credits is displayed at the bottom of the screen
+				NumCreditsFont.Write(NumCreditsText(player),
+					new Vector2(location.X, location.Y + LineSpacing),
+					Justify.Center,
+					0.6f, //write normal
+					Color.White,
+					ScreenManager.SpriteBatch,
+					Time);
 			}
 		}
 
-		/// <summary>
-		/// Get the text to write for inserting coins
-		/// </summary>
-		/// <returns>The coin text.</returns>
-		public string InsertCoinText(PlayerCredits player)
-		{
-			if (player.NumCoinsNeededForNextCredit == 1)
-			{
-				return "Insert Coin";
-			}
-			else
-			{
-				//need more than one coin, reutrn "coins" plural
-				return "Insert Coins";
-			}
-		}
-
-		/// <summary>
-		/// Get the text to write to display the number of credits
-		/// </summary>
-		/// <returns>The credits text.</returns>
-		public string NumCreditsText(PlayerCredits player)
-		{
-			//if it is free play mode, just say so
-			if (Service.FreePlay)
-			{
-				return "Free Play";
-			}
-
-			if (0 == player.NumCredits)
-			{
-				//Don't display 0 for number of credits, it will be confusing
-				return $"Credits: {player.NumCoins}/{Service.CoinsPerCredit}";
-			}
-			else
-			{
-				//There are credits in the system!
-				if (0 == player.NumCoins)
-				{
-					//Don't display 0/x for num coins, it looks terrible
-					return $"Credits: {player.NumCredits}";
-				}
-				else
-				{
-					return $"Credits: {player.NumCredits} {player.NumCoins}/{Service.CoinsPerCredit}";
-				}
-			}
-		}
-
-		private void WriteInsertCoinText(PlayerCredits player, Vector2 location, float pulsateSpeed, float size, string strText, GameTime gameTime)
+		private void WriteInsertCoinText(Vector2 location, float pulsateSpeed, float size, string strText)
 		{
 			//get the location to draw this player's text
 			//Draw in big pulsating letters

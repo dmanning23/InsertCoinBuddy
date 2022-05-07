@@ -12,16 +12,6 @@ namespace InsertCoinBuddyExample
 	/// </summary>
 	public class Game1 : ControllerGame
 	{
-		/// <summary>
-		/// The credit manager.
-		/// </summary>
-		private InsertCoinComponent _insertCoin;
-
-		/// <summary>
-		/// Component used to save system settings
-		/// </summary>
-		private ISettingsComponent _settings;
-
 		public Game1()
 		{
 			//FullScreen = true;
@@ -34,10 +24,9 @@ namespace InsertCoinBuddyExample
 
 			//Setup the credits manager.
 			var insertCoin = new InsertCoinComponent(this, 3, 2); //$.75 per game
-			_insertCoin = insertCoin;
 
 			//Add the settings manager
-			_settings = new SettingsComponent<SettingsScreen>(this, Keys.K, Buttons.Back);
+			var settings = new SettingsComponent<SettingsScreen>(this, Keys.K, Buttons.Back);
 		}
 
 		protected override void LoadContent()
@@ -45,7 +34,8 @@ namespace InsertCoinBuddyExample
 			base.LoadContent();
 
 			// Activate the first screens.
-			ScreenManager.SetTopScreen(new InsertCoinScreen(@"Fonts\ArialBlack24", @"Fonts\ArialBlack24", "coindrop",  "gamestart"), null);
+			ScreenManager.SetTopScreen(new InsertCoinScreen(@"Fonts\ArialBlack24", @"Fonts\ArialBlack24", "coindrop", "gamestart"), null);
+			//ScreenManager.SetTopScreen(new InsertCoinCocktailTableScreen(@"Fonts\ArialBlack24", @"Fonts\ArialBlack24", "coindrop",  "gamestart"), null);
 		}
 
 		protected override void Initialize()
