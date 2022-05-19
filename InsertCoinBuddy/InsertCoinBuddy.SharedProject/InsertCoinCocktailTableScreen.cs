@@ -1,6 +1,7 @@
 using FontBuddyLib;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 
 namespace InsertCoinBuddy
@@ -37,11 +38,11 @@ namespace InsertCoinBuddy
 
 			if (StyleSheet.UseFontPlus)
 			{
-				NumCreditsFont = new FontBuddyPlus();
+				NumCreditsFont = new FontBuddyPlusStroked();
 			}
 			else
 			{
-				NumCreditsFont = new FontBuddy();
+				NumCreditsFont = new OutlineTextBuddy();
 			}
 			NumCreditsFont.LoadContent(Content, NumCreditsFontName, StyleSheet.UseFontPlus, StyleSheet.SmallFontSize);
 		}
@@ -54,7 +55,7 @@ namespace InsertCoinBuddy
 				var player = Service.Players[0];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Left + (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Bottom - LineSpacing * 2f);
 				WritePlayerMenuText(player, location, true);
 			}
 
@@ -64,7 +65,7 @@ namespace InsertCoinBuddy
 				var player = Service.Players[1];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Right - (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Top + LineSpacing * 2f);
 				WritePlayerMenuText(player, location, false);
 			}
 		}
@@ -77,7 +78,7 @@ namespace InsertCoinBuddy
 				var player = Service.Players[0];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Left + (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Bottom - LineSpacing * 2f);
 				WritePlayerReadyText(player, location, true);
 			}
 
@@ -87,7 +88,7 @@ namespace InsertCoinBuddy
 				var player = Service.Players[1];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Right - (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Top + LineSpacing * 2f);
 				WritePlayerReadyText(player, location, false);
 			}
 		}
@@ -100,7 +101,7 @@ namespace InsertCoinBuddy
 				var player = Service.Players[0];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Left + (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Bottom - LineSpacing * 2f);
 				WritePlayerPlayingText(player, location, true);
 			}
 
@@ -110,23 +111,14 @@ namespace InsertCoinBuddy
 				var player = Service.Players[1];
 
 				//Get the location to draw the player's text
-				var location = new Vector2(Resolution.TitleSafeArea.Right - (2f * LineSpacing), Resolution.ScreenArea.Center.Y);
+				var location = new Vector2(Resolution.ScreenArea.Center.X, Resolution.TitleSafeArea.Top + LineSpacing * 2f);
 				WritePlayerPlayingText(player, location, false);
 			}
 		}
 
 		private void WritePlayerMenuText(PlayerCredits player, Vector2 location, bool p1)
 		{
-			if (p1)
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(90f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(90f);
-			}
-			else 
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(270f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(270f);
-			}
+			SetFont(p1);
 
 			//Draw instructions for the players
 			if (player.CreditAvailable)
@@ -144,16 +136,7 @@ namespace InsertCoinBuddy
 
 		private void WritePlayerReadyText(PlayerCredits player, Vector2 location, bool p1)
 		{
-			if (p1)
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(90f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(90f);
-			}
-			else
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(270f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(270f);
-			}
+			SetFont(p1);
 
 			//Draw instructions for the players
 			if (!player.Ready)
@@ -169,16 +152,7 @@ namespace InsertCoinBuddy
 
 		private void WritePlayerPlayingText(PlayerCredits player, Vector2 location, bool p1)
 		{
-			if (p1)
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(90f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(90f);
-			}
-			else
-			{
-				InsertCoinFont.Rotation = MathHelper.ToRadians(270f);
-				NumCreditsFont.Rotation = MathHelper.ToRadians(270f);
-			}
+			SetFont(p1);
 
 			//Only draw text for player's that aren't currently playing.
 			if (!player.Current)
@@ -196,59 +170,60 @@ namespace InsertCoinBuddy
 			WriteNumCreditsText(player, location, p1);
 		}
 
-		private Vector2 WriteNumCreditsText(PlayerCredits player, Vector2 location, bool p1)
+		private void WriteNumCreditsText(PlayerCredits player, Vector2 location, bool p1)
 		{
 			//Draw the number of credits text!
 			if (ShouldDisplayNumCredits(player))
 			{
 				var numCreditsText = NumCreditsText(player);
-				var scale = 0.6f;
+				var scale = 0.8f;
 				if (p1)
 				{
-					location = new Vector2(location.X - LineSpacing, location.Y);
-					location = LineFormatter.GetRotate90JustifiedPosition(numCreditsText, location, InsertCoinFont, Justify.Center, scale);
+					location = new Vector2(location.X, location.Y + LineSpacing);
+					
 				}
 				else
 				{
-					location = new Vector2(location.X + LineSpacing, location.Y);
-					location = LineFormatter.GetRotate270JustifiedPosition(numCreditsText, location, InsertCoinFont, Justify.Center, scale);
+					location = new Vector2(location.X, location.Y - LineSpacing);
+					//location = LineFormatter.GetRotate270JustifiedPosition(numCreditsText, location, InsertCoinFont, Justify.Center, scale);
 				}
 
-				//Number of credits is displayed at the bottom of the screen
 				NumCreditsFont.Write(NumCreditsText(player),
-					location,
-					Justify.Left,
-					0.6f, //write normal
-					Color.White,
-					ScreenManager.SpriteBatch,
-					Time);
+						location,
+						Justify.Center,
+						scale, //write normal
+						Color.White,
+						ScreenManager.SpriteBatch,
+						Time);
 			}
-
-			return location;
 		}
 
 		private void WriteInsertCoinText(Vector2 location, float pulsateSpeed, float size, string text, bool p1)
 		{
-			//Update with the correct rotation
+			//Draw in big pulsating letters
+			InsertCoinFont.PulsateSpeed = pulsateSpeed; //pulsate faster
+
+			InsertCoinFont.Write(text,
+					location,
+					Justify.Center,
+					size, //write bigger
+					Color.White,
+					ScreenManager.SpriteBatch,
+					Time);
+		}
+
+		private void SetFont(bool p1)
+		{
 			if (p1)
 			{
-				location = LineFormatter.GetRotate90JustifiedPosition(text, location, InsertCoinFont, Justify.Center, size);
+				InsertCoinFont.SpriteEffects = SpriteEffects.None;
+				NumCreditsFont.SpriteEffects = SpriteEffects.None;
 			}
 			else
 			{
-				location = LineFormatter.GetRotate270JustifiedPosition(text, location, InsertCoinFont, Justify.Center, size);
+				InsertCoinFont.SpriteEffects = SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
+				NumCreditsFont.SpriteEffects = SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
 			}
-
-			//get the location to draw this player's text
-			//Draw in big pulsating letters
-			InsertCoinFont.PulsateSpeed = pulsateSpeed; //pulsate faster
-			InsertCoinFont.Write(text,
-				location,
-				Justify.Left,
-				size, //write bigger
-				Color.White,
-				ScreenManager.SpriteBatch,
-				Time);
 		}
 
 		#endregion //Methods
